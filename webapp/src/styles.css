@@ -1,1 +1,158 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+ /* FONT IMPORT */
+ @import url('https://fonts.googleapis.com/css?family=Raleway:600|Source+Sans+Pro:400,900&display=swap');
+/* FONT  */
+ body{
+ font-family: 'Source Sans Pro', sans-serif;
+ font-family: 'Raleway', sans-serif;
+}
+
+/* NAV BAR */
+.brand-logo{
+    font-size: 35px;
+    color:white;
+}
+.navbar-brand{
+    color:white;
+}
+.nav-icon-size{
+    font-size: 25px;
+  }
+.material-icons {
+    vertical-align: middle;
+ }
+ .veralign{
+   vertical-align: middle;
+ }
+ .navbar{
+     background-color: #ff3f34;
+     background-image: linear-gradient(to right, #ff3838,#ff4f46,#fd2c72);
+ }
+ .nav-link{
+     color:white;
+ }
+ .nav-item a:hover{
+     color:#fffa65;
+ }
+ .navbar-header a:hover{
+    color:white;
+ }
+
+
+
+/* BANNER AND SEARCHBAR */
+.banner-image{
+    background-image: url("https://images.unsplash.com/photo-1471967183320-ee018f6e114a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80");
+    height: auto;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search-heading{
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .search-heading{
+        font-size: 40px;
+        font-weight: bolder;
+    }
+  }
+
+
+
+
+
+/* MENU ITEM LIST */
+
+/* ! CARD CSS */
+
+.card-deck .card{
+    /* padding-bottom:10px; */
+    width: 18rem;
+}
+
+.card-footer{
+    background-color: #fff;
+    border:0px;
+}
+
+.signup{
+    max-width: 600px;
+}
+
+.login{
+    max-width: 400px;
+}
+
+
+
+.container-fluid{
+    margin-top: 10px;
+    align-content: center;
+}
+
+
+.icon-size{
+font-size: 13px;
+vertical-align: middle;
+
+}
+#testname{
+    white-space: normal;
+}
+.card-subtitle{
+    padding:16px 0px 16px 0px;
+    font-size:12px;
+}
+.card-text{
+    font-size: 14px;
+}
+.veralign{
+    vertical-align: middle;
+  }
+ .add-to-cart .btn-success, .edit-cards .btn-success, .submit .btn-success{
+      background-color:#eb2f06;
+     background-image: linear-gradient(to right, #ff3f34, #ff4757,#ff5e57);
+      border:0px;
+  }
+  #badge-free{
+    vertical-align: top;
+  }
+#dateofLaunch{
+    font-size: 12px;
+    vertical-align: top;
+}
+#icon-shipping{
+    color:#1e90ff;
+}
+
+.font-price{
+    font-size: 18px;
+}
+
+
+/* CART */
+
+.delete-icon-size{
+    font-size: 2rem;
+}
+
+
+
+/*EDIT MENU ITEM  */
+.edit-menu .invalid-feedback{
+    display:block;
+}
+
+
+
+
+
+
+
