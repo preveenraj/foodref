@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FoodItem } from './food-item';
 
 
 @Component({
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemInfoComponent implements OnInit {
 
+  @Input() foodItem: FoodItem;
   
 
 

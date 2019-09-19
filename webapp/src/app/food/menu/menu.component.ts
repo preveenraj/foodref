@@ -9,15 +9,35 @@ import { FoodService } from '../food.service';
 })
 export class MenuComponent implements OnInit {
 
-@Input() foodItems:FoodItem[];
+fullFoodItems:FoodItem[]=[];
+filteredFoodItems:FoodItem[]=[];
  
 
   constructor(private foodService: FoodService) { }
+  foodname:string;
 
   ngOnInit() {
+    //TO GET ALL THE FOOD ITEMS INTO THE MENU COMPONENT
     this.foodService.getFoodItems()
-      .subscribe(data => this.foodItems = data);
-    console.log(this.foodItems);
-  }
+      .subscribe((data:FoodItem[]) =>  {
+        this.fullFoodItems = [...data];
+        this.filteredFoodItems = [...data];
+      });
+
+      this.foodService.getFilter().subscribe((obj: {title: string }) => {
+        if(obj.title!=''){
+          const result = this.fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(obj.title.toLowerCase()));
+          this.filteredFoodItems = result ? result : [];
+        }
+        else {
+            this.filteredFoodItems = [...this.fullFoodItems];
+        }
+      }
+      );
+
+
+
+
+    }
 
 }

@@ -1,3 +1,10 @@
-<p>
-  menu works!
-</p>
+<!-- MENU ITEM LIST -->
+<div class="container-fluid">
+  <div class="card-deck add-to-cart mb-5 pb-5">
+      <app-item-info  *ngFor="let foodItem of filteredFoodItems;" [foodItem]="foodItem"  >
+              
+      </app-item-info>
+  </div>
+</div>
+
+

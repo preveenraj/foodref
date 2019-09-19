@@ -8,13 +8,19 @@ import { MenuComponent } from './food/menu/menu.component';
 import { FoodService } from './food/food.service';
 import { SearchComponent } from './food/search/search.component';
 import { HttpClientModule} from '@angular/common/http';
+import { BannerComponent } from './site/banner/banner.component';
+import { HeaderComponent } from './site/header/header.component';
+import { FooterComponent } from './site/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemInfoComponent,
     MenuComponent,
-    SearchComponent
+    SearchComponent,
+    BannerComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,23 @@
-<p>
-  item-info works!
-</p>
+<div class="card mt-4">
+  <img class="card-img-top" [src]="foodItem.imageUrl" alt="Card image cap">
+  <div class="card-body pr-3 pl-3 pb-3">
+      <div class="row">
+          <h5 class="col">
+           <label name="name" id="testname">{{foodItem.title}}</label>
+          </h5>
+          <label name="price"  class="float-right text-danger pr-3 font-price">₹ {{foodItem.price}}</label>
+        </div>
+      <div class="card-subtitle text-muted">
+          <label name="category">{{foodItem.category}}</label>
+      <span *ngIf="foodItem.freeDelivery" class="float-right ml-auto">
+          <i class="material-icons" id="icon-shipping">local_shipping</i>
+          <span class="badge badge-info mt-1 pt-1 pb-1"  id="badge-free">Free</span>
+      </span>
+
+      </div>
+      <button type="button" class="btn btn-success float-right" onclick="window.location.href='addtocartwithoutlogin.html'">
+              <i class="material-icons veralign">shopping_cart</i>
+              Add to Cart
+          </button>
+  </div>
+</div>

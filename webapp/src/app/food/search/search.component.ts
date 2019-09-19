@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FoodService } from '../food.service';
 
 @Component({
   selector: 'app-search',
@@ -7,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private foodService: FoodService) { }
 
   ngOnInit() {
   }
 
   onSearchText(event:any){
-    console.log(event.target.value);
+    // console.log(event.target.value);
+    this.foodService.getFilter().next( { title: event.target.value } );
   }
 
 }
