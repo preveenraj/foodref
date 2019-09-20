@@ -1,7 +1,8 @@
+<app-banner></app-banner> 
 <!-- MENU ITEM LIST -->
 <div class="container-fluid">
   <div class="card-deck add-to-cart mb-5 pb-5">
-      <app-item-info  *ngFor="let foodItem of filteredFoodItems;" [foodItem]="foodItem"  >
+      <app-item-info  *ngFor="let foodItem of filteredFoodItems;" [foodItem]="foodItem" (addToCartRequested)="addToCart($event)"  >
               
       </app-item-info>
   </div>

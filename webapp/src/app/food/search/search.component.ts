@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
 
   onSearchText(event:any){
     // console.log(event.target.value);
-    this.foodService.getFilter().next( { title: event.target.value } );
+    this.foodService.getFilter().next( event.target.value );
   }
 
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodItem } from '../item-info/food-item';
 import { FoodService } from '../food.service';
+import { CartService } from 'src/app/shopping/cart/cart.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu',
@@ -13,31 +16,36 @@ fullFoodItems:FoodItem[]=[];
 filteredFoodItems:FoodItem[]=[];
  
 
-  constructor(private foodService: FoodService) { }
+  constructor(private foodService: FoodService,
+     private cartService: CartService,
+     private router:Router) { }
   foodname:string;
 
   ngOnInit() {
     //TO GET ALL THE FOOD ITEMS INTO THE MENU COMPONENT
     this.foodService.getFoodItems()
-      .subscribe((data:FoodItem[]) =>  {
+      .subscribe(
+        (data:FoodItem[]) =>  {
         this.fullFoodItems = [...data];
         this.filteredFoodItems = [...data];
-      });
+      }
+      );
 
-      this.foodService.getFilter().subscribe((obj: {title: string }) => {
-        if(obj.title!=''){
-          const result = this.fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(obj.title.toLowerCase()));
-          this.filteredFoodItems = result ? result : [];
-        }
-        else {
-            this.filteredFoodItems = [...this.fullFoodItems];
-        }
+      this.foodService.getFilter().subscribe(
+        (title: string) => {
+          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.fullFoodItems);
       }
       );
 
 
 
 
+    }
+
+    addToCart(itemId:number){
+      this.cartService.addToCart(itemId,1);
+      this.router.navigate(['/cart']);
+      
     }
 
 }

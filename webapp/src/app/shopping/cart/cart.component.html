@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="list-group mx-auto col-md-6">
+      <div class="pt-4">
+          <h2 class=" mt-5">Cart</h2>
+      </div>
+      <!-- ITEM 1 -->
+      <div class="list-group-item pl-4" *ngFor="let cartItem of cart.cartItems">
+          <div>
+              <label class="list-group-item-heading text-muted"><h3>{{cartItem.foodItem.title}}</h3></label>
+              <span class="float-right text-danger mt-1">
+                  <label name="price">Rs. {{cartItem.foodItem.price}}</label>
+              </span>
+          </div>   
+          <a href="cart-notification.html" onclick="alert('item deleted successfully');" class="list-group-item-text float-right"><i class="material-icons delete-icon-size text-muted">delete_forever</i></a>
+      </div>
+
+     
+       <!-- TOTAL -->
+       <div class="list-group-item pl-4">
+          <div>
+              <label class="list-group-item-heading"><h2>Total</h2></label>
+              <span class="float-right text-danger mt-2">
+                  <h4 name="price">Rs. {{cart.total}}</h4>
+              </span>
+          </div>   
+      </div>
+     
+      
+  </div>
+</div>

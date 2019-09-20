@@ -1,7 +1,7 @@
 import { Injectable, Input } from '@angular/core';
 import { FoodItem } from './item-info/food-item';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Observer } from 'rxjs';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Observable, Subject } from 'rxjs';
 export class FoodService {
 
   private food_url = '/assets/data/fooditems.json';
-  fooditems: FoodItem[];
+  // fullFoodItems: FoodItem[];
   filter = new Subject();
 
   getFilter():Subject<Object>{
@@ -24,7 +24,30 @@ export class FoodService {
     return this.http.get<FoodItem[]>(this.food_url);
   }
 
+  
+  getFoodItemsFiltered(title: string,fullFoodItems:FoodItem[]): FoodItem[] {
+    if(title!=''){
+      const result = fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(title.toLowerCase()));
+      return result ? result : [];
+    }
+    else {
+        return fullFoodItems;
+    }
+  }
+  
+  
+  getFoodItem(itemId: number):Observable<any>{
+    return Observable.create((observer: Observer<FoodItem>)=> {
+      this.getFoodItems().subscribe((foodItems)=>{
+              const foodItem = foodItems.find( foodItem => foodItem.id == itemId);
+              observer.next(foodItem);
+      });
+    
 
+
+    });
+  }
+  
 
 
 
@@ -38,8 +61,5 @@ export class FoodService {
     return this.fooditems;
   } */
 
-  /* getFoodItem(name: string): FoodItem{
-
-    return this.fooditems[1];
-  } */
+  
 }
