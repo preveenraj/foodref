@@ -37,9 +37,9 @@
                            <label for="field-category">Category</label>
                                 <select name="category" formControlName="category" class=" form-control" required>
                                    <option hidden></option>
-                                   <option value="Starters">Starters</option>
+                                   <option value="Starter">Starter</option>
                                     <option value="Main Course">Main Course</option>
-                                    <option value="Desserts">Desserts</option>
+                                    <option value="Dessert">Dessert</option>
                                 </select>
                                 <!-- VALIDATION FEEDBACK START -->
                               <div class="invalid-feedback" *ngIf="editForm.get('category').touched && editForm.get('category').hasError('required')" id="category-error-1">Category is required</div>
@@ -49,11 +49,11 @@
                         <div class="col-md-3 mt-3 mt-md-0">
                              <label class="d-block">Active</label>
                             <div class="form-check-inline  edit-menu mt-md-2 row ml-0">
-                                <input type="radio" name="active" formControlName="active" value="yes" class="form-check-input" id="field-yes" required>Yes                        
+                                <input type="radio" name="active" formControlName="active" [value]=true class="form-check-input" id="field-yes" required>Yes                        
                                 <label class="form-check-label ml-3" for="field-yes"></label>
                               <!-- </div>
                             <div class="form-check-inline"> -->
-                                <input type="radio" name="active" formControlName="active" value="no" class="form-check-input" id="field-no" required>No                     
+                                <input type="radio" name="active" formControlName="active" [value]=false class="form-check-input" id="field-no" required>No                     
                                 <label class="form-check-label" for="field-no"></label>
                                 <!-- <div class="invalid-feedback"  *ngIf="editForm.get('active').touched && editForm.get('active').hasError('required')" id="active-error-1">Select active status</div> -->
                             </div>

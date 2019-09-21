@@ -14,7 +14,6 @@ export class ItemInfoComponent implements OnInit {
 
 
 
-
   constructor() {
     
 
@@ -30,6 +29,7 @@ export class ItemInfoComponent implements OnInit {
   isEditAllowed():boolean{
       return true;
   }
+
 
 
 
