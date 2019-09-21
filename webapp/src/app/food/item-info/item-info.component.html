@@ -1,3 +1,7 @@
+
+<ng-template *ngIf="isEditAllowed(); then adminlist; else customerlist;"></ng-template>
+<!-- MENU LIST CUSTOMER -->
+<ng-template #customerlist>
 <div class="card mt-4">
   <img class="card-img-top" [src]="foodItem.imageUrl" alt="Card image cap">
   <div class="card-body pr-3 pl-3 pb-3">
@@ -21,3 +25,45 @@
           </button>
   </div>
 </div>
+</ng-template>
+
+<!-- MENU LIST ADMIN -->
+<ng-template #adminlist>
+<div class="container-fluid">
+  <!-- <h1>Products</h1> -->
+  <div class="card-deck edit-cards mb-5 pb-5">
+      <!-- ITEM 1 -->
+      <div>
+          <div class="card mt-4 justify-content-center">
+                  <img class="card-img-top" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80" alt="Card image cap">
+                  <div class="card-body pr-3 pl-3 pb-1">
+                      <div class="row">
+                          <h5 class="col">
+                           <label name="name" id="testname">Sandwich</label>
+                          </h5>
+                            <label name="price" class="float-right text-danger pr-3 font-price">₹99</label>
+                        </div>
+                      <div class="card-subtitle text-muted">
+                          <span class="badge badge-success veralign pt-1 pb-1">Active</span>
+                          <label name="category">Main Course</label>
+                      <span class="float-right ml-auto">
+                          <i class="material-icons" id="icon-shipping">local_shipping</i>
+                          <span class="badge badge-info mt-1 pt-1 pb-1"  id="badge-free">Free</span>
+                      </span>
+
+                      </div>
+                      <span class="text-muted float-left mt-0 pt-0">
+                          <i class="material-icons icon-size mb-0 pd-0">access_time</i>
+                          <label class="icon-size mb-0 pd-0">Launch</label>
+                          <label id="dateofLaunch" name="date" class="d-block mt-0 pd-0">15/03/2017</label>
+                      </span>
+                      <button type="button" class="btn btn-success float-right mt-1">
+                              <i class="material-icons veralign">edit</i>
+                              Edit
+                          </button>
+                  </div>
+          </div>
+       </div>
+     </div>
+  </div>
+</ng-template>

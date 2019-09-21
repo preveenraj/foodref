@@ -44,7 +44,7 @@ filteredFoodItems:FoodItem[]=[];
 
     addToCart(itemId:number){
       this.cartService.addToCart(itemId,1);
-      this.router.navigate(['/cart']);
+      // this.router.navigate(['/cart']);
     }
 
 }

@@ -10,40 +10,40 @@
                         <label for="field-itemname">Item Name</label>
                         <input type="text" name="title" formControlName="title" class="form-control" id="field-itemname" required>
                         <!-- VALIDATION FEEDBACK START -->
-                        <div class="invalid-feedback" id="title-error-1"></div>
-                        <div class="invalid-feedback" id="title-error-2"></div>
-                        <div class="valid-feedback" id="title-valid">Delicious!</div>
+                        <div  class="invalid-feedback" *ngIf="editForm.get('title').dirty && editForm.get('title').hasError('required')" id="title-error-1">Title is required</div>
+                        <div class="invalid-feedback" *ngIf="editForm.get('title').dirty && editForm.get('title').hasError('maxlength')" id="title-error-2">Title cannot exceed 200 characters</div>
+                        <div class="valid-feedback" *ngIf="editForm.get('title').dirty && !editForm.get('title').errors" id="title-valid">Delicious!</div>
                         <!-- VALIDATION FEEDBACK END -->
                    </div>
                    <div class="form-group row">
                       <div class="col-md-3 edit-menu  mt-0 mt-md-0">
                           <label for="field-price">Price</label>
-                          <input type="number" name="price" formControlName="price" class="form-control" id="field-price" required>
+                          <input type="text" name="price" formControlName="price" class="form-control" id="field-price" required>
                           <!-- VALIDATION FEEDBACK START -->
-                          <div class="invalid-feedback" id="price-error-1"></div>
-                          <div class="invalid-feedback" id="price-error-2"></div>
-                          <div class="valid-feedback">Well Margined!</div>
+                          <div class="invalid-feedback" *ngIf="editForm.get('price').dirty && editForm.get('price').hasError('required')" id="price-error-1">Price is required</div>
+                          <div class="invalid-feedback" *ngIf="editForm.get('price').dirty && editForm.get('price').hasError('pattern')" id="price-error-2">Price can only contain numbers</div>
+                          <div class="valid-feedback" *ngIf="editForm.get('price').dirty && !editForm.get('price').errors">Well Margined!</div>
                           <!-- VALIDATION FEEDBACK END -->
                       </div>
                       <div class="col-md-3 edit-menu  mt-3 mt-md-0">
                               <label for="field-dateOfLaunch">Date of Launch</label>
-                              <input type="text" value="" name="dateOfLaunch" formControlName="dateOfLaunch" class="form-control" id="field-dateOfLaunch" required>
+                              <input type="date"  value="" name="dateOfLaunch" formControlName="dateOfLaunch" class="form-control" id="field-dateOfLaunch" required>
                               <!-- VALIDATION FEEDBACK START -->
-                              <div class="invalid-feedback" id="dateOfLaunch-error-1"></div>
-                              <div class="valid-feedback">Set!</div>
+                              <div class="invalid-feedback" *ngIf="editForm.get('dateOfLaunch').dirty && editForm.get('dateOfLaunch').hasError('required')" id="dateOfLaunch-error-1"></div>
+                              <div class="valid-feedback" *ngIf="editForm.get('dateOfLaunch').dirty && !editForm.get('dateOfLaunch').errors">Set!</div>
                               <!-- VALIDATION FEEDBACK END -->                       
                          </div>
                         <div class="col-md-3 edit-menu  mt-3 mt-md-0">
                            <label for="field-category">Category</label>
                                 <select name="category" formControlName="category" class=" form-control" required>
-                                   <option value="" hidden></option>
+                                   <option hidden></option>
                                    <option value="Starters">Starters</option>
                                     <option value="Main Course">Main Course</option>
                                     <option value="Desserts">Desserts</option>
                                 </select>
                                 <!-- VALIDATION FEEDBACK START -->
-                              <div class="invalid-feedback" id="category-error-1"></div>
-                              <div class="valid-feedback">Sup!</div>
+                              <div class="invalid-feedback" *ngIf="editForm.get('category').touched && editForm.get('category').hasError('required')" id="category-error-1">Category is required</div>
+                              <div class="valid-feedback" *ngIf="editForm.get('category').touched && !editForm.get('category').errors">Sup!</div>
                               <!-- VALIDATION FEEDBACK END -->   
                         </div>
                         <div class="col-md-3 mt-3 mt-md-0">
@@ -55,7 +55,7 @@
                             <div class="form-check-inline"> -->
                                 <input type="radio" name="active" formControlName="active" value="no" class="form-check-input" id="field-no" required>No                     
                                 <label class="form-check-label" for="field-no"></label>
-                                <div class="invalid-feedback" id="active-error-1"></div>
+                                <!-- <div class="invalid-feedback"  *ngIf="editForm.get('active').touched && editForm.get('active').hasError('required')" id="active-error-1">Select active status</div> -->
                             </div>
                             
                             
@@ -83,3 +83,5 @@
                     
                 </form>
             </div>
+
+            

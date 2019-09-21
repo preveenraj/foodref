@@ -27,5 +27,10 @@ export class ItemInfoComponent implements OnInit {
   }
 
 
+  isEditAllowed():boolean{
+      return true;
+  }
+
+
 
 }

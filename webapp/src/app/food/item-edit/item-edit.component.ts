@@ -16,12 +16,12 @@ export class ItemEditComponent implements OnInit {
 
     this.editForm = new FormGroup({
       'title': new FormControl(null, [Validators.required, Validators.maxLength(200)]),
-      'imageUrl': new FormControl(null, [Validators.required]),
-      'price': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+      // 'imageUrl': new FormControl(null, [Validators.required]),
+      'price': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+\.[0-9]*$')]),
       'category': new FormControl(null, Validators.required),
-      'expiryDate': new FormControl(null),
-      'inStock': new FormControl(null, Validators.required),
-      'isDeliveryFree': new FormControl(null)
+      'dateOfLaunch': new FormControl(null, Validators.required),
+      'active': new FormControl(null, Validators.required),
+      'freeDelivery': new FormControl(null)
     });
   }
 

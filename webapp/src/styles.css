@@ -149,9 +149,11 @@ vertical-align: middle;
 
 
 /*EDIT MENU ITEM  */
-.edit-menu .invalid-feedback{
+.edit-menu .invalid-feedback, .edit-menu .valid-feedback{
     display:block;
 }
+
+
 
 
 
