@@ -14,7 +14,7 @@ import { FoodItem } from '../item-info/food-item';
 export class ItemEditComponent implements OnInit {
 
   editForm: FormGroup;
-  foodItem: FoodItem = {id: null, title: null, price: null, active: null, dateOfLaunch:new Date(), category: null, freeDelivery: null, imageUrl: null};
+  newFoodItem: FoodItem = {id: null, title: null, price: null, active: null, dateOfLaunch:new Date('2017-02-02'), category: null, freeDelivery: null, imageUrl: null};
 
 
   constructor(private foodService: FoodService , private route: ActivatedRoute, private router: Router) { }
@@ -22,25 +22,26 @@ export class ItemEditComponent implements OnInit {
   ngOnInit() {
 
     this.editForm = new FormGroup({
-      'title': new FormControl(this.foodItem.title, [Validators.required, Validators.maxLength(200)]),
-      // 'imageUrl': new FormControl(null, [Validators.required]),
-      'price': new FormControl(this.foodItem.price, [Validators.required, Validators.pattern('^[0-9]+\.[0-9]*$')]),
-      'category': new FormControl(this.foodItem.category, Validators.required),
-      'dateOfLaunch': new FormControl(this.foodItem.dateOfLaunch.toISOString().substring(0,10), Validators.required),
-      'active': new FormControl(this.foodItem.active, Validators.required),
-      'freeDelivery': new FormControl(this.foodItem.freeDelivery)
+      'title': new FormControl(this.newFoodItem.title, [Validators.required, Validators.maxLength(200)]),
+      'imageUrl': new FormControl(null),
+      'price': new FormControl(this.newFoodItem.price, [Validators.required, Validators.pattern('^[0-9]+\.[0-9]*$')]),
+      'category': new FormControl(this.newFoodItem.category, Validators.required),
+      'dateOfLaunch': new FormControl(this.newFoodItem.dateOfLaunch.toISOString().substring(0,10), Validators.required),
+      'active': new FormControl(this.newFoodItem.active, Validators.required),
+      'freeDelivery': new FormControl(this.newFoodItem.freeDelivery)
     });
     this.route.params.subscribe((params: Params) => {
       const foodItemId: number = params['itemId'];
-      this.foodItem.id = foodItemId;
+      this.newFoodItem.id = +foodItemId;
       this.foodService.getFoodItem(foodItemId).subscribe((foodItem: FoodItem ) => {
+        console.log(foodItem.imageUrl)
         if (foodItem) {
           this.editForm.patchValue({
             title: foodItem.title,
-            // imageUrl: foodItem.imageUrl,
+            imageUrl: foodItem.imageUrl,
             price: foodItem.price,
             category: foodItem.category,
-            dateOfLaunch: foodItem.dateOfLaunch,
+            dateOfLaunch: foodItem.dateOfLaunch.toISOString().substring(0, 10),
             active: foodItem.active,
             freeDelivery: foodItem.freeDelivery
           });
@@ -50,10 +51,40 @@ export class ItemEditComponent implements OnInit {
       });
     });
   }
+  
+  get title() {
+    return this.editForm.get('title');
+  }
+
+  get foodItemURL() {
+    return this.editForm.get('imageUrl');
+  }
+  get price() {
+    return this.editForm.get('price');
+  }
+  get active() {
+    return this.editForm.get('active');
+  }
+  get freeDelivery() {
+    return this.editForm.get('freeDelivery');
+  }
+  get dateOfLaunch() {
+    return this.editForm.get('dateOfLaunch');
+  }
+
 
   onSubmitEditForm(){
-  
-      this.foodService.updateFoodItem(this.foodItem);
+    this.newFoodItem = {
+      id: this.newFoodItem.id, title: this.editForm.value['title'], price: this.editForm.value['price'],
+      active: this.editForm.value['active'], 
+      dateOfLaunch: new Date(this.editForm.value['dateOfLaunch']), 
+      freeDelivery: this.editForm.value['freeDelivery'],
+      category: this.editForm.value['category'],
+       imageUrl: this.editForm.value['imageUrl']
+    };
+      
+      this.foodService.updateFoodItem(this.newFoodItem);
+      this.router.navigate(['/menu']);
   }
 
 }

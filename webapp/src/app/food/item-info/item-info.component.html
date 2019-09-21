@@ -30,7 +30,6 @@
 <!-- MENU LIST ADMIN -->
 <ng-template #adminlist>
 <div class="container-fluid">
-  <!-- <h1>Products</h1> -->
   <div class="card-deck edit-cards mb-5 pb-5">
       <!-- ITEM 1 -->
       <div>
@@ -44,7 +43,7 @@
                             <label name="price" class="float-right text-danger pr-3 font-price">₹ {{foodItem.price}}</label>
                         </div>
                       <div class="card-subtitle text-muted">
-                          <span class="badge badge-success veralign pt-1 pb-1 mr-1">Active</span>
+                          <span *ngIf="foodItem.active" class="badge badge-success veralign pt-1 pb-1 mr-1">Active</span>
                           <label name="category">{{foodItem.category}}</label>
                       <span *ngIf="foodItem.freeDelivery"  class="float-right ml-auto">
                           <i class="material-icons" id="icon-shipping">local_shipping</i>
