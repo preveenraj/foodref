@@ -28,6 +28,7 @@ filteredFoodItems:FoodItem[]=[];
         (data:FoodItem[]) =>  {
         this.fullFoodItems = [...data];
         this.filteredFoodItems = [...data];
+        console.log(this.fullFoodItems);
       }
       );
 

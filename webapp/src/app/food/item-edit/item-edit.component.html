@@ -27,7 +27,7 @@
                       </div>
                       <div class="col-md-3 edit-menu  mt-3 mt-md-0">
                               <label for="field-dateOfLaunch">Date of Launch</label>
-                              <input type="date"  value="" name="dateOfLaunch" formControlName="dateOfLaunch" class="form-control" id="field-dateOfLaunch" required>
+                              <input type="date" name="dateOfLaunch" formControlName="dateOfLaunch" class="form-control" id="field-dateOfLaunch" required>
                               <!-- VALIDATION FEEDBACK START -->
                               <div class="invalid-feedback" *ngIf="editForm.get('dateOfLaunch').dirty && editForm.get('dateOfLaunch').hasError('required')" id="dateOfLaunch-error-1"></div>
                               <div class="valid-feedback" *ngIf="editForm.get('dateOfLaunch').dirty && !editForm.get('dateOfLaunch').errors">Set!</div>

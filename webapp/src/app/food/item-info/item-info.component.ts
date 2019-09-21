@@ -12,6 +12,7 @@ export class ItemInfoComponent implements OnInit {
   @Input() foodItem: FoodItem;
   @Output() addToCartRequested: EventEmitter<number> = new EventEmitter<number>();
 
+  isAdmin:boolean;
 
 
   constructor() {
@@ -19,6 +20,7 @@ export class ItemInfoComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.isAdmin = true;
   }
 
   onAddToCart(itemId:number){
@@ -27,7 +29,7 @@ export class ItemInfoComponent implements OnInit {
 
 
   isEditAllowed():boolean{
-      return true;
+      return this.isAdmin;
   }
 
 
