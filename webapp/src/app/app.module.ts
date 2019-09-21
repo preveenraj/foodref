@@ -12,6 +12,9 @@ import { BannerComponent } from './site/banner/banner.component';
 import { HeaderComponent } from './site/header/header.component';
 import { FooterComponent } from './site/footer/footer.component';
 import { CartComponent } from './shopping/cart/cart.component';
+import { ItemEditComponent } from './food/item-edit/item-edit.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -23,11 +26,14 @@ import { CartComponent } from './shopping/cart/cart.component';
     HeaderComponent,
     FooterComponent,
     CartComponent,
+    ItemEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [FoodService],
   bootstrap: [AppComponent]

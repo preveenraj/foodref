@@ -60,6 +60,12 @@ export class CartService {
 
   }
 
+  RemoveCartItem(cartItemId:string){
+    var itemIndex = this.cart.cartItems.findIndex(cartItem => cartItem.itemId===cartItemId);
+    var itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
+    this.cart.total -= itemToBeRemoved.foodItem.price;
+  }
+
 
   
 }

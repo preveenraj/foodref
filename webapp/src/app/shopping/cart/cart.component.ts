@@ -20,4 +20,8 @@ export class CartComponent implements OnInit {
    
     }
 
+    onRemoveCartItem(cartItemId:string){
+      this.cartService.RemoveCartItem(cartItemId);
+    }
+
 }
