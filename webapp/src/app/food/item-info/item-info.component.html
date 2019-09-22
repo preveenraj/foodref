@@ -15,11 +15,14 @@
           <label name="category">{{foodItem.category}}</label>
       <span *ngIf="foodItem.freeDelivery" class="float-right ml-auto">
           <i class="material-icons" id="icon-shipping">local_shipping</i>
-          <span class="badge badge-info mt-1 pt-1 pb-1"  id="badge-free">Free</span>
+          <span class="badge badge-info mt-1 pt-1"  id="badge-free">Free</span>
       </span>
 
       </div>
-      <button type="button" class="btn btn-success float-right" (click)="onAddToCart(foodItem.id)" >
+            <div *ngIf="foodItemAdded" class="alert alert-success alert-dismissible fade show alert-msg font-size-small" role="alert">
+                Item added to cart successfully.
+            </div>
+      <button *ngIf="!foodItemAdded" type="button" class="btn btn-success float-right" (click)="onAddToCart(foodItem.id)" >
               <i class="material-icons veralign">shopping_cart</i>
               Add to Cart
           </button>

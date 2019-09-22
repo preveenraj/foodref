@@ -1,4 +1,6 @@
-<div class="container">
+<div class="container mt-4 pt-4 pb-4">
+  <div class="alert alert-secondary mt-4 col-md-6 mx-auto" *ngIf="cart.cartItems === null || cart.cartItems.length === 0; else cartItems">No items in cart. Use 'Add to Cart' option in product list.</div>
+  <ng-template #cartItems>
   <div class="list-group mx-auto col-md-6">
       <div class="pt-4">
           <h2 class=" mt-5">Cart</h2>
@@ -24,7 +26,6 @@
               </span>
           </div>   
       </div>
-     
-      
   </div>
+</ng-template>
 </div>

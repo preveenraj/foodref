@@ -88,6 +88,10 @@
     max-width: 400px;
 }
 
+.font-size-small{
+    font-size: 12px;
+}
+
 
 
 .container-fluid{
@@ -149,9 +153,12 @@ vertical-align: middle;
 
 
 /*EDIT MENU ITEM  */
-.edit-menu .invalid-feedback, .edit-menu .valid-feedback{
+.invalid-feedback, .valid-feedback{
     display:block;
 }
+
+
+
 
 
 

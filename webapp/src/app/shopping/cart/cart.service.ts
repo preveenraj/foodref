@@ -36,10 +36,10 @@ export class CartService {
      return this.cart;
    }
 
-   calculateTotalPrice():number{
-      let total=0;
-      for(let cartItem of this.cart.cartItems) {
-        total+=cartItem.foodItem.price;
+   calculateTotalPrice(): number {
+      let total = 0 ;
+      for (const cartItem of this.cart.cartItems) {
+        total += cartItem.foodItem.price;
           }
     return total;
    }
@@ -61,8 +61,8 @@ export class CartService {
   }
 
   RemoveCartItem(cartItemId:string){
-    var itemIndex = this.cart.cartItems.findIndex(cartItem => cartItem.itemId===cartItemId);
-    var itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
+    let itemIndex = this.cart.cartItems.findIndex(cartItem => cartItem.itemId===cartItemId);
+    let itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
     this.cart.total -= itemToBeRemoved.foodItem.price;
   }
 

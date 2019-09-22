@@ -10,7 +10,7 @@
                         <label for="field-itemname">Item Name</label>
                         <input type="text" name="title" formControlName="title" class="form-control" id="field-itemname" required>
                         <!-- VALIDATION FEEDBACK START -->
-                        <div  class="invalid-feedback" *ngIf="editForm.get('title').dirty && editForm.get('title').hasError('required')" id="title-error-1">Title is required</div>
+                        <div class="invalid-feedback" *ngIf="editForm.get('title').touched && editForm.get('title').hasError('required')"> Title is required</div>
                         <div class="invalid-feedback" *ngIf="editForm.get('title').dirty && editForm.get('title').hasError('maxlength')" id="title-error-2">Title cannot exceed 200 characters</div>
                         <div class="valid-feedback" *ngIf="editForm.get('title').dirty && !editForm.get('title').errors" id="title-valid">Delicious!</div>
                         <!-- VALIDATION FEEDBACK END -->

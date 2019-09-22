@@ -1,0 +1,95 @@
+ <!-- EDIT FORM -->
+    
+ <div class="container signup mt-4 mb-5 pb-5">
+    <div class="mt-4 pt-4">   
+            <div class="alert alert-success mt-4" role="alert" *ngIf="formSubmitted">
+                    Signed up successfully
+            </div>  
+        <div class="card mt-4 shadow" *ngIf="!formSubmitted">
+            <div class="pt-4 pl-3 card-title">
+                <h2>Signup</h2>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="signupForm" (submit)="onSubmitSignUp()" >
+                        <div class="alert alert-danger" role="alert"
+                        *ngIf="signupForm.get('username').dirty && signupForm.get('username').hasError('userNameTaken')">
+                            Username already exists
+                        </div>
+                    <!-- FIRST ROW -->
+                    <div class="row mt-md-0">
+                        <div class="form-group col-lg-6">
+                            <div>
+                            <label for="field-username">Username</label>
+                            <div class="spinner-border ml-1 mb-1 spinner-border-sm text-warning" role="status" *ngIf="signupForm.pending">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <input type="text" formControlName="username" name="username" class="form-control" id="field-username" placeholder="Enter Username">
+                            </div>
+                            <div class="invalid-feedback" *ngIf="signupForm.get('username').touched && signupForm.get('username').hasError('required')">Username is  required</div>
+                            <div class="invalid-feedback" *ngIf="signupForm.get('username').dirty && signupForm.get('username').hasError('maxlength')">Username cannot exceed 20 characters</div>
+                          
+                        </div>
+                    </div>
+                    <!-- SECOND ROW -->
+                    <div class="form-group row">
+                        <div class="col-md-6  mt-0 mt-md-0">
+                            <div>
+                            <label for="field-firstname">First Name</label>
+                            <input type="text" formControlName="firstname"  name="firstname" class="form-control" id="field-firstname" placeholder="Enter First Name">
+                            </div>
+                            <div class="invalid-feedback" *ngIf="signupForm.get('firstname').touched && signupForm.get('firstname').hasError('required')">First Name
+                                  is required</div>
+                                <div class="invalid-feedback"
+                                  *ngIf="signupForm.get('firstname').dirty && signupForm.get('firstname').hasError('pattern')">First Name
+                                  cannot have numbers</div>
+                                <div class="invalid-feedback"
+                                  *ngIf="signupForm.get('firstname').dirty && signupForm.get('firstname').hasError('maxlength')">First
+                                  Name cannot exceed 50 characters</div>    
+                        </div>
+                        <div class="col-md-6  mt-3 mt-md-0">
+                            <div>
+                                <label for="field-lastname">Last Name</label>
+                                <input type="text" formControlName="lastname" name="lastname" class="form-control" id="field-lastname" placeholder="Enter Last Name">
+                           </div>  
+                           <div class="invalid-feedback" *ngIf="signupForm.get('lastname').touched && signupForm.get('lastname').hasError('required')">Last Name
+                           is required</div>
+                         <div class="invalid-feedback"
+                           *ngIf="signupForm.get('lastname').dirty && signupForm.get('lastname').hasError('pattern')">Last Name
+                           cannot have numbers</div>
+                         <div class="invalid-feedback"
+                           *ngIf="signupForm.get('lastname').dirty && signupForm.get('lastname').hasError('maxlength')">Last
+                           Name cannot exceed 50 characters</div>  
+                        </div>
+                    </div>
+                    <!-- THIRD ROW -->
+                    <div class="form-group row">
+                        <div class="col-md-6  mt-0 mt-md-0">
+                            <div>  
+                                <label for="field-password">Password</label>
+                                <input type="password" formControlName="password" name="password" class="form-control" id="field-password" placeholder="Enter Password">
+                            </div>
+                            <div class="invalid-feedback"
+                            *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('required')">Password is required</div>              
+                            <div class="invalid-feedback" *ngIf="signupForm.get('password').dirty && signupForm.get('password').hasError('minlength')">Password must be atleast 8 characters</div>
+                           
+                        </div>
+                        <div class="col-md-6  mt-3 mt-md-0">
+                            <div>
+                                <label for="field-confirm-password">Confirm Password</label>
+                                <input type="password" formControlName="confirmPassword" name="confirm-password" class="form-control" id="field-confirm-password" placeholder="Confirm Password">
+                            </div>
+                            <div class="invalid-feedback"
+                            *ngIf="signupForm.get('confirmPassword').touched && signupForm.get('confirmPassword').hasError('required')">Confirm Password is required</div>
+                            <div class="invalid-feedback"
+                            *ngIf="signupForm.get('confirmPassword').dirty && signupForm.get('confirmPassword').hasError('nomatch')">Passwords doesn't match</div>
+                       
+                            </div>
+                    </div>
+                    <div class="form-group row submit mt-4">
+                        <input type="submit" name="submit" [disabled]="!signupForm.valid" class="btn btn-success ml-3" value="Signup">
+                    </div>
+                </form>
+            </div>    
+        </div>
+    </div>    
+</div>

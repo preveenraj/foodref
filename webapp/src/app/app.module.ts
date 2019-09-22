@@ -14,6 +14,7 @@ import { FooterComponent } from './site/footer/footer.component';
 import { CartComponent } from './shopping/cart/cart.component';
 import { ItemEditComponent } from './food/item-edit/item-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SignupComponent } from './site/signup/signup.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FooterComponent,
     CartComponent,
     ItemEditComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
