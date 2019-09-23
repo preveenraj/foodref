@@ -3,6 +3,7 @@ import { FoodItem } from '../item-info/food-item';
 import { FoodService } from '../food.service';
 import { CartService } from 'src/app/shopping/cart/cart.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/site/auth.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ filteredFoodItems:FoodItem[]=[];
 
   constructor(private foodService: FoodService,
      private cartService: CartService,
-     private router:Router) { }
+     private router:Router,
+     private authService: AuthService) { }
   foodname:string;
 
   ngOnInit() {
@@ -45,7 +47,9 @@ filteredFoodItems:FoodItem[]=[];
 
     addToCart(itemId:number){
       this.cartService.addToCart(itemId,1);
-      this.router.navigate(['/cart']);
+      if(!this.authService.loggedInUser){
+          this.router.navigate(['/cart']);
+      }
     }
 
 }
