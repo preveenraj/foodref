@@ -75,7 +75,7 @@ export class ItemEditComponent implements OnInit {
 
   onSubmitEditForm(){
     this.newFoodItem = {
-      id: this.newFoodItem.id, title: this.editForm.value['title'], price: this.editForm.value['price'],
+      id: this.newFoodItem.id, title: this.editForm.value['title'], price: +this.editForm.value['price'],
       active: this.editForm.value['active'], 
       dateOfLaunch: new Date(this.editForm.value['dateOfLaunch']), 
       freeDelivery: this.editForm.value['freeDelivery'],

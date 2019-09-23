@@ -10,8 +10,8 @@
                         <div class="alert alert-info" role="alert" *ngIf="authSource === 'cart'">
                                 Please login before adding an item to Cart.
                             </div>
-                            <div class="alert alert-info" role="alert" *ngIf="!isLoginValid && submitClicked">
-                                    Invalid username
+                            <div class="alert alert-danger" role="alert" *ngIf="!isLoginValid && submitClicked">
+                                    Invalid username/password
                                 </div>
                       <!-- FIRST ROW -->
                       <div class="row mt-md-0">
