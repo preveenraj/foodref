@@ -17,8 +17,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.signupForm = new FormGroup({
       'username': new FormControl(null, [Validators.required, Validators.maxLength(20)], this.isUsernameTaken),
-      'firstname': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z]+$'), Validators.maxLength(50)]),
-      'lastname': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z]+$'), Validators.maxLength(50)]),
+      'firstname': new FormControl(null, [Validators.required, Validators.pattern('^[a-z A-Z]+$'), Validators.maxLength(50)]),
+      'lastname': new FormControl(null, [Validators.required, Validators.pattern('^[a-z A-Z]+$'), Validators.maxLength(50)]),
       'password': new FormControl(null, [Validators.required,  Validators.minLength(8)]),
       'confirmPassword': new FormControl(null, [Validators.required, this.matchConfirmPassword.bind(this)]),
     });
@@ -60,7 +60,6 @@ export class SignupComponent implements OnInit {
   
   onSubmitSignUp(){
     this.formSubmitted = true;
-    this.signupForm.reset();
 
     const newUser = { username: this.signupForm.value['username'], 
                       firstName: this.signupForm.value['firstname'], 
@@ -68,6 +67,8 @@ export class SignupComponent implements OnInit {
                       password: this.signupForm.value['password'], 
                       role: 'Customer' };
     this.userService.addUser(newUser);
+    this.signupForm.reset();
+    
     
   }
 

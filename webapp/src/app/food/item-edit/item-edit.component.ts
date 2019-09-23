@@ -15,7 +15,7 @@ export class ItemEditComponent implements OnInit {
 
   editForm: FormGroup;
   newFoodItem: FoodItem = {id: null, title: null, price: null, active: null, dateOfLaunch:new Date('2017-02-02'), category: null, freeDelivery: null, imageUrl: null};
-
+  itemEditted:boolean=false;
 
   constructor(private foodService: FoodService , private route: ActivatedRoute, private router: Router) { }
 
@@ -82,9 +82,11 @@ export class ItemEditComponent implements OnInit {
       category: this.editForm.value['category'],
        imageUrl: this.editForm.value['imageUrl']
     };
-      
       this.foodService.updateFoodItem(this.newFoodItem);
-      this.router.navigate(['/menu']);
+      this.itemEditted = true;
+      setTimeout(() => {
+        this.router.navigate(['/menu']);
+      }, 2000);
   }
 
 }

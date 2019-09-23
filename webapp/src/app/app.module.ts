@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignupComponent } from './site/signup/signup.component';
 import { LoginComponent } from './site/login/login.component';
 import { NotFoundComponent } from './site/not-found/not-found.component';
+import { CartService } from './shopping/cart/cart.service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { NotFoundComponent } from './site/not-found/not-found.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [FoodService],
+  providers: [FoodService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -36,11 +36,10 @@ export class FoodService {
     if(title!=''){
       const result = fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(title.toLowerCase()));
       return result ? result : [];
-    }
-    else {
+    } else {
         return fullFoodItems;
     }
-  }
+  }9 
   
   
   getFoodItem(itemId: number):Observable<any>{

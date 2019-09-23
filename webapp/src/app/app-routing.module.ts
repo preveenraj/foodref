@@ -12,10 +12,10 @@ import { NotFoundComponent } from './site/not-found/not-found.component';
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   { path: 'menu', component: MenuComponent },
-  {path:'cart', component: CartComponent, canActivate: [AuthGuardService]},
-  {path:'edit-item/:itemId', component: ItemEditComponent, canActivate: [AuthGuardService]},
-  {path:'signup', component: SignupComponent},
-  {path:'login', component: LoginComponent},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuardService]},
+  {path: 'edit-item/:itemId', component: ItemEditComponent, canActivate: [AuthGuardService]},
+  {path: 'signup', component: SignupComponent},
+  {path: 'login', component: LoginComponent},
   { path: '**', component: NotFoundComponent }
 
 ];

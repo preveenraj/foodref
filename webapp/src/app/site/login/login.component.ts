@@ -28,16 +28,18 @@ export class LoginComponent implements OnInit {
 
   
   onSubmit(loginForm: NgForm) {
-    this.submitClicked=true;
+    this.submitClicked = true;
     const username = loginForm.value.username;
     const password = loginForm.value.password;
     if (username === 'yoyoboy') { // temporary to show the invalid user login
       this.isLoginValid = false;
     } else {
       this.authService.login(username, password);
-      if(this.authService.loggedInUser){
+      if(this.authService.isAdminUser() && this.authService.loggedInUser){
+        this.router.navigate(['/menu']);
+      } else if(this.authService.loggedInUser) {
         this.router.navigate([this.authService.redirectUrl]);
-      }else{
+      } else {
       this.isLoginValid = false;
       }
     }
