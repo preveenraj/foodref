@@ -6,6 +6,7 @@ import { ItemEditComponent } from './food/item-edit/item-edit.component';
 import { SignupComponent } from './site/signup/signup.component';
 import { LoginComponent } from './site/login/login.component';
 import { AuthGuardService } from './site/auth-guard.service';
+import { NotFoundComponent } from './site/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,9 @@ const routes: Routes = [
   {path:'cart', component: CartComponent, canActivate: [AuthGuardService]},
   {path:'edit-item/:itemId', component: ItemEditComponent, canActivate: [AuthGuardService]},
   {path:'signup', component: SignupComponent},
-  {path:'login', component: LoginComponent}
+  {path:'login', component: LoginComponent},
+  { path: '**', component: NotFoundComponent }
+
 ];
 
 @NgModule({
