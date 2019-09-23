@@ -10,6 +10,9 @@
                         <div class="alert alert-info" role="alert" *ngIf="authSource === 'cart'">
                                 Please login before adding an item to Cart.
                             </div>
+                            <div class="alert alert-info" role="alert" *ngIf="!isLoginValid && submitClicked">
+                                    Invalid username
+                                </div>
                       <!-- FIRST ROW -->
                       <div class="row mt-md-0">
                           <div class="form-group col-12">
@@ -31,6 +34,7 @@
                             </div>
                             </div>
                       </div>
+
                       <div class="form-group submit mt-4">
                           <span class="">
                           <input type="submit" name="submit"[disabled]="!loginForm.valid" class="btn btn-success" value="Login">

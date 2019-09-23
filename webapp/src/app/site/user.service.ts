@@ -25,10 +25,12 @@ export class UserService {
 
   authenticate(username: string, password: string): Observable<User> {
     return Observable.create((observer: Observer<any>) => { // temporary
-      if (username !== 'preveen') {
+      if (username === 'preveen') {
+        observer.next({ username,  firstName: 'Preveen', lastName: 'Raj', role: 'Admin', accessToken: 'JWT-TOKEN' });
+      } else if(username == 'techrush') {
         observer.next({ username,  firstName: 'Tech', lastName: 'Rush', role: 'Customer', accessToken: 'JWT-TOKEN' });
       } else {
-        observer.next({ username,  firstName: 'Preveen', lastName: 'Raj', role: 'Admin', accessToken: 'JWT-TOKEN' });
+          observer.next(null);
       }
       return null;
     });
