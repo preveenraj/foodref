@@ -15,6 +15,7 @@ import { CartComponent } from './shopping/cart/cart.component';
 import { ItemEditComponent } from './food/item-edit/item-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignupComponent } from './site/signup/signup.component';
+import { LoginComponent } from './site/login/login.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { SignupComponent } from './site/signup/signup.component';
     CartComponent,
     ItemEditComponent,
     SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

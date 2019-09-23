@@ -66,6 +66,11 @@ export class CartService {
     this.cart.total -= itemToBeRemoved.foodItem.price;
   }
 
+  clearCart() {
+    this.cart.cartItems = null;
+    this.cart.total = 0;
+  }
+
 
   
 }

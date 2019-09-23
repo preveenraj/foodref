@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FoodItem } from './food-item';
+import { AuthService } from 'src/app/site/auth.service';
 
 
 @Component({
@@ -13,15 +14,14 @@ export class ItemInfoComponent implements OnInit {
   @Output() addToCartRequested: EventEmitter<number> = new EventEmitter<number>();
   foodItemAdded:boolean = false;
 
-  isAdmin:boolean;
 
 
-  constructor() {
+  constructor(private authService:AuthService) {
     
 
   }
   ngOnInit() {
-    this.isAdmin = false;
+    
   }
 
   onAddToCart(itemId:number){
@@ -34,7 +34,7 @@ export class ItemInfoComponent implements OnInit {
 
 
   isEditAllowed():boolean{
-      return this.isAdmin;
+    return this.authService.loggedInUser && this.authService.isAdminUser();
   }
 
 

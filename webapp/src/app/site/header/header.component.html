@@ -1,5 +1,5 @@
 <header>
-<nav class="navbar navbar-expand-md fixed-top">
+<nav class="navbar navbar-expand-md">
   <!-- <div class="container-fluid"> -->
         <div class="navbar-header">
             <i class="material-icons brand-logo">local_dining</i>
@@ -13,24 +13,30 @@
        
               <div class="collapse navbar-collapse" id="truyum-menu">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"> 
-                <a class="nav-link" [routerLink]="['/menu']">
+              <li class="nav-item" *ngIf="isAuthenticated()"> 
+                <a class="nav-link" routerLink="menu">
                   <span class="veralign">Menu Items</span>
                 </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/cart']">
+              <li class="nav-item" *ngIf="isAuthenticated()">
+                  <a class="nav-link" routerLink="cart">
                       <span class="veralign">Cart</span>
                   </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
+              <li class="nav-item" *ngIf="isAuthenticated()">
+                <a class="nav-link" routerLink="" >
                     <i class="material-icons nav-icon-size">person</i>
-                    <span class="veralign">John</span>
+                    <span class="veralign">{{getUser().firstName}} {{getUser().lastName}}</span>
                 </a>
             </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="">
+            <li class="nav-item" *ngIf="!isAuthenticated()">
+              <a class="nav-link" routerLink="signup">Sign Up</a>
+          </li>
+          <li class="nav-item" *ngIf="!isAuthenticated()">
+            <a class="nav-link" routerLink="login">Log In</a>
+          </li>
+              <li class="nav-item" *ngIf="isAuthenticated()">
+                  <a class="nav-link" routerLink="login" (click)="onLogOut()">
                       <span class="veralign">Logout</span>
                   </a>
               </li>

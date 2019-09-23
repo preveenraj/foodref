@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   formSubmitted:boolean = false;
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -44,11 +45,33 @@ export class SignupComponent implements OnInit {
     }
     return null;
   }
-  
+  get username() {
+    return this.signupForm.get('username');
+  }
+  get firstname() {
+    return this.signupForm.get('firstname');
+  }
+  get lastname() {
+    return this.signupForm.get('lastname');
+  }
+  get password() {
+    return this.signupForm.get('password');
+  }
   
   onSubmitSignUp(){
     this.formSubmitted = true;
     this.signupForm.reset();
+
+    const newUser = { username: this.signupForm.value['username'], 
+                      firstName: this.signupForm.value['firstname'], 
+                      lastName: this.signupForm.value['lastname'], 
+                      password: this.signupForm.value['password'], 
+                      role: 'Customer' };
+    this.userService.addUser(newUser);
+    
   }
+
+ 
+ 
 
 }
