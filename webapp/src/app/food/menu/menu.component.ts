@@ -37,7 +37,9 @@ filteredFoodItems:FoodItem[]=[];
 
       this.foodService.getFilter().subscribe(
         (title: string) => {
-          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.fullFoodItems);
+          console.log("filter cheythu")
+         
+          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.filteredFoodItems);
       }
       );
 
@@ -49,8 +51,10 @@ filteredFoodItems:FoodItem[]=[];
 
 
     // ngDoCheck(){
+    //   console.log("docheck vilichu")
     //   this.filteredFoodItems = this.authService.isAdminUser() ? 
     //   this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
+     
     // }
 
     addToCart(itemId:number){

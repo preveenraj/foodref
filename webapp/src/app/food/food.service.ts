@@ -37,13 +37,13 @@ export class FoodService {
     const customerFoodItems:FoodItem[] = foodItems.filter(foodItem => {
         return foodItem.active && foodItem.dateOfLaunch <= today;
     });
-    console.log("customer food items: "+customerFoodItems)
+    // console.log("customer food items: "+customerFoodItems)
     return customerFoodItems;
   }
 
   
   getFoodItemsFiltered(title: string,fullFoodItems:FoodItem[]): FoodItem[] {
-    console.log("hello"+ this.authService.isAdminUser());
+    console.log("inside filter and isAdmin: "+ this.authService.isAdminUser());
     fullFoodItems = this.authService.isAdminUser() ? fullFoodItems: this.getFoodItemsForCustomer(fullFoodItems);
     if(title!=''){
       const result = fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(title.toLowerCase()));
