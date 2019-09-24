@@ -2,6 +2,7 @@ import { Injectable, Input } from '@angular/core';
 import { FoodItem } from './item-info/food-item';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, Observer, of } from 'rxjs';
+import { AuthService } from '../site/auth.service';
 
 
 @Injectable({
@@ -24,15 +25,26 @@ export class FoodService {
   }
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getFoodItems():Observable<FoodItem[]> {
     // return this.http.get<FoodItem[]>(this.food_url);
     return of (this.fullFoodItems);
   }
 
+  getFoodItemsForCustomer(foodItems:FoodItem[]):FoodItem[]{
+    const today = new Date();
+    const customerFoodItems:FoodItem[] = foodItems.filter(foodItem => {
+        return foodItem.active && foodItem.dateOfLaunch <= today;
+    });
+    console.log("customer food items: "+customerFoodItems)
+    return customerFoodItems;
+  }
+
   
   getFoodItemsFiltered(title: string,fullFoodItems:FoodItem[]): FoodItem[] {
+    console.log("hello"+ this.authService.isAdminUser());
+    fullFoodItems = this.authService.isAdminUser() ? fullFoodItems: this.getFoodItemsForCustomer(fullFoodItems);
     if(title!=''){
       const result = fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(title.toLowerCase()));
       return result ? result : [];
@@ -62,6 +74,8 @@ export class FoodService {
     console.log(foodItem)
     this.fullFoodItems[itemId] = foodItem;
   }
+
+
   
 
 
