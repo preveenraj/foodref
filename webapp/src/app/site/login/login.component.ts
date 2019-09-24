@@ -35,10 +35,11 @@ export class LoginComponent implements OnInit {
       this.isLoginValid = false;
     } else {
       this.authService.login(username, password);
-      if(this.authService.isAdminUser() && this.authService.loggedInUser){
+      // if(this.authService.isAdminUser() && this.authService.loggedInUser){
+      //   this.router.navigate(['/menu']);
+      // } else
+       if(this.authService.loggedInUser) {
         this.router.navigate(['/menu']);
-      } else if(this.authService.loggedInUser) {
-        this.router.navigate([this.authService.redirectUrl]);
       } else {
       this.isLoginValid = false;
       }
