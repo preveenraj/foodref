@@ -25,13 +25,20 @@ export class UserService {
 
   authenticate(username: string, password: string): Observable<User> {
     return Observable.create((observer: Observer<any>) => { // temporary
-      if (username === 'preveen') {
-        observer.next({ username,  firstName: 'Preveen', lastName: 'Raj', role: 'Admin', accessToken: 'JWT-TOKEN' });
-      } else if(username == 'techrush') {
-        observer.next({ username,  firstName: 'Tech', lastName: 'Rush', role: 'Customer', accessToken: 'JWT-TOKEN' });
-      } else {
-          observer.next(null);
-      }
+      const usermatched = this.getUser(username);
+      if(usermatched!=null){
+      usermatched.accessToken = 'JWT-TOKEN';
+      observer.next(usermatched);
+    } else {
+      observer.next(null);
+    }
+      // if (username === 'preveen') {
+      //   observer.next({ username,  firstName: 'Preveen', lastName: 'Raj', role: 'Admin', accessToken: 'JWT-TOKEN' });
+      // } else if(username === 'techrush') {
+      //   observer.next({ username,  firstName: 'Tech', lastName: 'Rush', role: 'Customer', accessToken: 'JWT-TOKEN' });
+      // } else {
+      //     observer.next(null);
+      // }
       return null;
     });
   }

@@ -18,7 +18,7 @@
                   <span class="veralign">Menu Items</span>
                 </a>
               </li>
-              <li class="nav-item" *ngIf="isAuthenticated()">
+              <li class="nav-item" *ngIf="isAuthenticated() && !isAdmin()">
                   <a class="nav-link" routerLink="cart">
                       <span class="veralign">Cart</span>
                   </a>

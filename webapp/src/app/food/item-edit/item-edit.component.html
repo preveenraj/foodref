@@ -5,7 +5,12 @@
                 <div class="pt-4">
                   <h2 class=" mt-5">Edit Menu Item</h2>
                 </div>  
-                <form [formGroup]="editForm" (submit)="onSubmitEditForm()" class="needs-validation pb-5 mb-5" name="menuItemForm" method="post" action="D:\Projects\submissions\truyum-ui-template\WebContent\edit-menu-item-success.html" novalidate>
+                <div class="alert alert-success" *ngIf="itemEditted">Item details saved successfully
+                    <div class="spinner-grow text-success veralign" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                </div>
+                <form [formGroup]="editForm" (submit)="onSubmitEditForm()" *ngIf="!itemEditted" class="needs-validation pb-5 mb-5" name="menuItemForm" method="post" action="D:\Projects\submissions\truyum-ui-template\WebContent\edit-menu-item-success.html" novalidate>
                    <div class="form-group edit-menu mt-3 mt-md-0">
                         <label for="field-itemname">Item Name</label>
                         <input type="text" name="title" formControlName="title" class="form-control" id="field-itemname" required>
