@@ -48,10 +48,10 @@ filteredFoodItems:FoodItem[]=[];
     }
 
 
-    ngDoCheck(){
-      this.filteredFoodItems = this.authService.isAdminUser() ? 
-      this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
-    }
+    // ngDoCheck(){
+    //   this.filteredFoodItems = this.authService.isAdminUser() ? 
+    //   this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
+    // }
 
     addToCart(itemId:number){
       this.cartService.addToCart(itemId,1);
