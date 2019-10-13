@@ -39,7 +39,7 @@ export class FoodService {
     } else {
         return fullFoodItems;
     }
-  }9 
+  } 
   
   
   getFoodItem(itemId: number):Observable<any>{
