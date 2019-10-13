@@ -16,6 +16,14 @@ export class CartService {
     cartItems :null,
     total : 0
   };
+  
+  alreadyExists:boolean = false;
+  foodItemAdded:boolean = false;
+  foodItemtobeAdded:FoodItem =  {id:-1,title:null,price:null,active:null,dateOfLaunch:new Date('03/15/2017'),
+                                  category:null,freeDelivery:true,imageUrl:null};
+ 
+  
+  
 
   constructor(private foodService: FoodService) {
 
@@ -49,12 +57,29 @@ export class CartService {
         this.foodService.getFoodItem(itemId)
               .subscribe((foodItemtobeAdded:FoodItem)=>{
                   const uniqID = UUID.UUID();
+                  this.foodItemtobeAdded = foodItemtobeAdded;
                   if(this.cart.cartItems === null){
                     this.cart.cartItems = [{itemId: uniqID, foodItem: foodItemtobeAdded, quantity:quantity}];
                     this.cart.total = foodItemtobeAdded.price;
+                    this.foodItemAdded = true;
+                    setTimeout(() => {
+                      this.foodItemAdded = false;
+                    }, 1000);
                   } else {
-                    this.cart.cartItems.push({itemId: uniqID, foodItem: foodItemtobeAdded, quantity:quantity});
-                    this.cart.total += foodItemtobeAdded.price;
+
+                    if(!this.cart.cartItems.some(cartItem => cartItem.foodItem.id == foodItemtobeAdded.id)){
+                      this.cart.cartItems.push({itemId: uniqID, foodItem: foodItemtobeAdded, quantity:quantity});
+                      this.cart.total += foodItemtobeAdded.price;
+                      this.foodItemAdded = true;
+                      setTimeout(() => {
+                        this.foodItemAdded = false;
+                      }, 1000);
+                    }  else {
+                      this.alreadyExists = true;
+                      setTimeout(() => {
+                        this.alreadyExists = false;
+                      }, 1000);
+                    }
                   }
               });
 

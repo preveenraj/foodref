@@ -19,9 +19,18 @@
       </span>
 
       </div>
-            <div *ngIf="foodItemAdded" class="alert alert-success alert-dismissible fade show alert-msg font-size-small" role="alert">
+            <!-- <div *ngIf="foodItemAdded" class="alert alert-success alert-dismissible fade show alert-msg font-size-small" role="alert">
                 Item added to cart successfully.
+            </div> -->
+            
+            <div *ngIf="this.cartService.foodItemAdded && this.cartService.foodItemtobeAdded.id == foodItem.id" class="alert alert-success alert-dismissible fade show alert-msg font-size-small" role="alert">
+                Food Item added to Cart successfully.
             </div>
+            <div *ngIf="this.cartService.alreadyExists && (this.cartService.foodItemtobeAdded.id == foodItem.id)" class="alert alert-danger alert-dismissible fade show alert-msg font-size-small" role="alert">
+                Food Item already exists in Cart.
+            </div>
+            
+            
       <button *ngIf="!foodItemAdded" type="button" class="btn btn-success float-right" (click)="onAddToCart(foodItem.id)" >
               <i class="material-icons veralign">shopping_cart</i>
               Add to Cart

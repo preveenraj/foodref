@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FoodItem } from './food-item';
 import { AuthService } from 'src/app/site/auth.service';
+import { CartService } from '../../shopping/cart/cart.service';
 
 
 @Component({
@@ -15,10 +16,8 @@ export class ItemInfoComponent implements OnInit {
   foodItemAdded:boolean = false;
 
 
-
-  constructor(private authService:AuthService) {
-    
-
+  constructor(private authService: AuthService,
+              private cartService: CartService) {
   }
   ngOnInit() {
     
