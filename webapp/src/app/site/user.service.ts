@@ -8,7 +8,7 @@ import { Observable, Observer } from 'rxjs';
 export class UserService {
   
   userList: User[] = [
-    { username:'preveen', firstName: 'Preveen', lastName: 'Raj', password:'password', role: 'Admin'},
+    { username:'admin', firstName: 'Preveen', lastName: '(Admin)', password:'password', role: 'Admin'},
     { username:'techrush', firstName: 'Tech', lastName: 'Rush', password:'password', role: 'Customer'}
   ];
 

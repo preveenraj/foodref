@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/shopping/cart/cart.service';
 import { AuthService } from '../auth.service';
+import { FoodService } from 'src/app/food/food.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,12 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  
+
   constructor(private router: Router,
     private cartService: CartService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private foodService: FoodService) { }
 
     isAuthenticated() {
       return this.authService.loggedInUser;
@@ -29,6 +33,7 @@ export class HeaderComponent implements OnInit {
     onLogOut() {
       this.cartService.clearCart();
       this.authService.logOut();
+
       this.router.navigate([this.authService.redirectUrl]);
     }
 

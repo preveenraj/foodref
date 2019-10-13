@@ -20,7 +20,8 @@ filteredFoodItems:FoodItem[]=[];
   constructor(private foodService: FoodService,
      private cartService: CartService,
      private router:Router,
-     private authService: AuthService) { }
+     private authService: AuthService
+     ) { }
   foodname:string;
 
   ngOnInit() {
@@ -29,21 +30,32 @@ filteredFoodItems:FoodItem[]=[];
       .subscribe(
         (data:FoodItem[]) =>  {
         this.fullFoodItems = [...data];
-        this.filteredFoodItems = [...data];
-        console.log(this.fullFoodItems);
+        this.filteredFoodItems = this.authService.isAdminUser() ? 
+                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
       }
       );
 
       this.foodService.getFilter().subscribe(
         (title: string) => {
-          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.fullFoodItems);
+          console.log("filter cheythu")
+         
+          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.filteredFoodItems);
       }
       );
 
 
+      //SIMPLY
 
 
     }
+
+
+    // ngDoCheck(){
+    //   console.log("docheck vilichu")
+    //   this.filteredFoodItems = this.authService.isAdminUser() ? 
+    //   this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
+     
+    // }
 
     addToCart(itemId:number){
       this.cartService.addToCart(itemId,1);
@@ -51,5 +63,10 @@ filteredFoodItems:FoodItem[]=[];
           this.router.navigate(['/cart']);
       }
     }
+
+    
+
+
+
 
 }

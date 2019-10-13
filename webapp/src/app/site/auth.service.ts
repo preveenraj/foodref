@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from './user';
+import { FoodService } from '../food/food.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,10 @@ export class AuthService {
     }
 
     logOut() {
-      this.redirectUrl = '/'; // reset to root url
+      this.redirectUrl = '/login'; // reset to root url
       this.loggedInUser = false;
       this.userAuthenticated = null;
+      this.isAdmin = false;
     }
 
     isAdminUser() {
