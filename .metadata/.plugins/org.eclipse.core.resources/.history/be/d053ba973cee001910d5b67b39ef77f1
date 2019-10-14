@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        
+
+    <bean id="MenuItem" class="com.cognizant.truyum.model.MenuItem">
+    	<property name="id" value="1" />
+        <property name="name" value="Burger" />
+        <property name="price" value="99" />
+		<property name="active" value="true" />
+		<property name="dateOfLaunch" value="03/17/2018" />
+		   <property name="category">
+            <array>
+               <value>Main Course, Starters, Dessert</value>
+            </array>
+        </property>
+    </bean>
+    
+   
+    
+     <bean id="departmentBean" class="com.cognizant.springlearn.bean.Department">
+        <property name="id" value="1" />
+        <property name="name" value="Payroll" />
+    </bean>
+    
+
+    
+
+</beans>

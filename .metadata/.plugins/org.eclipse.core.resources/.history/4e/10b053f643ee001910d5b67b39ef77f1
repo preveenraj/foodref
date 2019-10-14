@@ -1,0 +1,14 @@
+package com.cognizant.truyum.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.cognizant.truyum.service.MenuItemService;
+
+@RequestMapping("/menu-items")
+public class MenuItemController {
+	
+	@Autowired
+	MenuItemService menuItemService;
+
+}

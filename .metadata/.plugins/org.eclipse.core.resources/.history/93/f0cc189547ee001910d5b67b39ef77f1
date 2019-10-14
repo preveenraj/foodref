@@ -1,0 +1,19 @@
+package com.cognizant.truyum.security;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(Jwt.class);
+	
+	 public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
+	        super(authenticationManager);
+	        LOGGER.info("Start");
+	        LOGGER.debug("{}: ", authenticationManager);
+	    }
+
+}

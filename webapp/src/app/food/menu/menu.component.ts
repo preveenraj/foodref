@@ -1,3 +1,4 @@
+import { MenuItemService } from './../../services/menu-item.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodItem } from '../item-info/food-item';
 import { FoodService } from '../food.service';
@@ -20,7 +21,8 @@ filteredFoodItems:FoodItem[]=[];
   constructor(private foodService: FoodService,
      private cartService: CartService,
      private router:Router,
-     private authService: AuthService
+     private authService: AuthService,
+     private menuItemService: MenuItemService
      ) { }
   foodname:string;
 
@@ -30,21 +32,29 @@ filteredFoodItems:FoodItem[]=[];
       .subscribe(
         (data:FoodItem[]) =>  {
         this.fullFoodItems = [...data];
-        this.filteredFoodItems = this.authService.isAdminUser() ? 
+        /* this.filteredFoodItems = this.authService.isAdminUser() ? 
+                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems); */
+           this.filteredFoodItems = this.authService.isAdminUser() ? 
                           this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
       }
       );
 
       this.foodService.getFilter().subscribe(
         (title: string) => {
-          console.log("filter cheythu")
-         
-          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.filteredFoodItems);
+          console.log('filter cheythu');
+
+          this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.fullFoodItems);
       }
       );
 
 
       //SIMPLY
+      this.menuItemService.getAllMenuItems().subscribe(
+        data=>{
+          console.log("this is from spring");
+          console.log(data);
+        }
+      )
 
 
     }

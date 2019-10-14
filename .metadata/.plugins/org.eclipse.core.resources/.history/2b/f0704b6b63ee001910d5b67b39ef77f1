@@ -1,0 +1,5 @@
+package com.cognizant.truyum.security;
+
+public class JwtAuthorizationFilter {
+
+}

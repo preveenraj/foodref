@@ -1,0 +1,8 @@
+package com.cognizant.truyum.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("/menu-items")
+public class MenuItemController {
+
+}

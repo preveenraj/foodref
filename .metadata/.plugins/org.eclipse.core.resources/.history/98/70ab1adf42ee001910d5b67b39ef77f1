@@ -1,0 +1,13 @@
+package com.cognizant.truyum.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cognizant.truyum.dao.MenuItemDao;
+
+public class MenuItemService {
+	
+	@Autowired
+	@Qualifier("MenuItemDaoCollectionImpl")
+	MenuItemDao menuItemDao;
+
+}

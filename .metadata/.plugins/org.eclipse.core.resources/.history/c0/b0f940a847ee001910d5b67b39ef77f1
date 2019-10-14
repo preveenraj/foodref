@@ -1,0 +1,37 @@
+package com.cognizant.truyum.security;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+	
+	 public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
+	        super(authenticationManager);
+	        LOGGER.info("Start");
+	        LOGGER.debug("{}: ", authenticationManager);
+	    }
+	 
+	    @Override
+	    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res,
+	            FilterChain chain) throws IOException, ServletException {
+	        LOGGER.info("Start");
+	        String header = req.getHeader("Authorization");
+	        LOGGER.debug(header);
+	        
+	        if (header == null || !header.startsWith("Bearer ")) {
+	            chain.doFilter(req, res);
+	            return;
+	        }
+	        UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
+
+	        SecurityContextHolder.getContext().setAuthentication(authentication);
+	        chain.doFilter(req, res);
+	        LOGGER.info("End");
+	    }
+
+}

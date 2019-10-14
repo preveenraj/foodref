@@ -1,0 +1,37 @@
+package com.cognizant.truyum;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TruyumApplication.class);
+
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("pwd")).roles("ADMIN").and()
+				.withUser("user").password(passwordEncoder().encode("pwd")).roles("USER");
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		LOGGER.info("Start");
+		return new BCryptPasswordEncoder();
+	}
+
+	@SuppressWarnings("rawtypes")
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+		httpSecurity.cors();
+		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/authenticate")
+				.hasAnyRole("USER", "ADMIN").anyRequest().authenticated().and()
+				.addFilter(new JwtAuthorizationFilter(authenticationManager()));
+		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/menu-items").permitAll()
+				.anyRequest().authenticated();
+		httpSecurity.csrf().disable().httpBasic().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
+
+	}
+
+	private AuthenticationManager authenticationManager() {
+
+		return null;
+	}
+}
