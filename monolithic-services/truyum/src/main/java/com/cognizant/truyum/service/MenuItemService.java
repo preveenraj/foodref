@@ -21,4 +21,9 @@ public class MenuItemService {
 		return menuItemDao.getMenuItemListCustomer();
 	}
 
+
+	public List<MenuItem> getMenuItemListAdmin() {
+		return menuItemDao.getMenuItemListAdmin();
+	}
+
 }

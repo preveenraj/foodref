@@ -32,10 +32,8 @@ filteredFoodItems:FoodItem[]=[];
       .subscribe(
         (data:FoodItem[]) =>  {
         this.fullFoodItems = [...data];
-        /* this.filteredFoodItems = this.authService.isAdminUser() ? 
-                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems); */
-           this.filteredFoodItems = this.authService.isAdminUser() ? 
-                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);
+       this.filteredFoodItems = this.authService.isAdminUser() ? 
+                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems); 
       }
       );
 

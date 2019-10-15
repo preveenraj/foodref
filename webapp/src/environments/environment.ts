@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  authUrl: 'http://localhost:8083/authenticate',
   baseUrl: 'http://localhost:8083/menu-items',
 };
 

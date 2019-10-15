@@ -5,27 +5,40 @@ import java.util.Date;
 
 public class MenuItem {
 	private long id;
-	private String name;
+	private String title;
 	private float price;
 	private boolean active;
 	private Date dateOfLaunch;
 	private String category;
 	private boolean freeDelivery;
+	private String imageUrl;
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
 	public MenuItem() {
 		super();
 	}
 
-	public MenuItem(long id, String name, float price, boolean active, Date dateOfLaunch, String category,
-			boolean freeDelivery) {
+
+
+
+	public MenuItem(long id, String title, float price, boolean active, Date dateOfLaunch, String category,
+			boolean freeDelivery, String imageUrl) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.title = title;
 		this.price = price;
 		this.active = active;
 		this.dateOfLaunch = dateOfLaunch;
 		this.category = category;
 		this.freeDelivery = freeDelivery;
+		this.imageUrl = imageUrl;
 	}
 
 	public long getId() {
@@ -36,12 +49,13 @@ public class MenuItem {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public float getPrice() {
@@ -86,8 +100,9 @@ public class MenuItem {
 
 	@Override
 	public String toString() {
-		return "[id=" + id + ", name=" + name + ", price=" + price + ", active=" + active + ", dateOfLaunch="
-				+ dateOfLaunch + ", category=" + category + ", freeDelivery=" + freeDelivery + "]";
+		return "MenuItem [id=" + id + ", title=" + title + ", price=" + price + ", active=" + active + ", dateOfLaunch="
+				+ dateOfLaunch + ", category=" + category + ", freeDelivery=" + freeDelivery + ", imageUrl=" + imageUrl
+				+ "]";
 	}
 
 	@Override

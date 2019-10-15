@@ -34,7 +34,9 @@ export class ItemEditComponent implements OnInit {
       const foodItemId: number = params['itemId'];
       this.newFoodItem.id = +foodItemId;
       this.foodService.getFoodItem(foodItemId).subscribe((foodItem: FoodItem ) => {
-        console.log(foodItem.imageUrl)
+        console.log(foodItem.imageUrl);
+        foodItem.dateOfLaunch = new Date(foodItem.dateOfLaunch);
+        foodItem.dateOfLaunch.setDate(foodItem.dateOfLaunch.getDate()+1);
         if (foodItem) {
           this.editForm.patchValue({
             title: foodItem.title,

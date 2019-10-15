@@ -22,7 +22,7 @@ public class MenuItemController {
 	@GetMapping()
 	public ResponseEntity<List<MenuItem>> getAllMenuItems() {
 		
-		return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
+		return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListAdmin(),HttpStatus.OK);
 	}
 
 }

@@ -35,13 +35,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-		httpSecurity.cors();
+/*		httpSecurity.cors();
 		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/authenticate")
 				.hasAnyRole("USER", "ADMIN").anyRequest().authenticated().and()
 				.addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/menu-items").permitAll()
 				.anyRequest().authenticated();
-		httpSecurity.csrf().disable().httpBasic().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
+		httpSecurity.csrf().disable().httpBasic().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));*/
+		
+		  httpSecurity.cors();
+      httpSecurity.csrf().disable().httpBasic().and()
+	            .authorizeRequests()
+	            .antMatchers("/menu-items").permitAll()
+	            .anyRequest().authenticated()
+	            .and()
+	            .addFilter(new JwtAuthorizationFilter(authenticationManager()));
+	        
+			httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/authenticate")
+			.hasAnyRole("USER", "ADMIN").anyRequest().authenticated().and()
+			.addFilter(new JwtAuthorizationFilter(authenticationManager()));
+
 
 	}
 

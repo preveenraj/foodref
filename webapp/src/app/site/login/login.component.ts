@@ -10,12 +10,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   
-  isLoginValid:boolean=true;
-  authSource:string;
-  submitClicked:boolean=false;
+  isLoginValid: boolean = true;
+  authSource: string;
+  submitClicked: boolean = false;
   
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -38,12 +38,24 @@ export class LoginComponent implements OnInit {
       // if(this.authService.isAdminUser() && this.authService.loggedInUser){
       //   this.router.navigate(['/menu']);
       // } else
-       if(this.authService.loggedInUser) {
+      
+ /*       if(this.authService.loggedInUser) {
         this.router.navigate(['/menu']);
       } else {
       this.isLoginValid = false;
+      } */
+      if(!this.authService.loggedInUser) {
+        this.isLoginValid=false;
       }
+    
     }
   }
+
+/*    invalid(){
+     console.log("login invalid is"+sessionStorage.getItem('loginInvalid'));
+    if(sessionStorage.getItem('loginInvalid')==='true') {
+      this.isLoginValid=false;
+    } */
+  
 
 }
