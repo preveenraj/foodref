@@ -35,11 +35,10 @@ export class AuthService {
           console.log(data);
           console.log("data.role " +data.role.substring(5));
           console.log("data.token " +data.token);
-          
+
           user = this.userService.getUser(data.role.substring(5).toLowerCase());
           user.accessToken = data.token;
-         
-      
+
         if(user){
           console.log("user logged in");
           this.loggedInUser = true;

@@ -51,9 +51,9 @@ export class FoodService {
     if(this.authService.userAuthenticated.username===''){
     return this.http.get<FoodItem[]>(this.menuUrl);
     }
-    else{
+    else {
       const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
-      return this.http.get<FoodItem[]>(this.menuUrl+'/auth',{headers});
+      return this.http.get<FoodItem[]>(this.menuUrl, {headers});
     }
     // return of (this.fullFoodItems);
   }

@@ -28,14 +28,7 @@ public class MenuItemController {
 	InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
 	
-	@GetMapping()
-	public ResponseEntity<List<MenuItem>> getAllMenuItemsAnonymous() {
-
-		
-		return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
-	}
-	
-	@GetMapping("/auth")
+	@GetMapping
 	public ResponseEntity<List<MenuItem>> getAllMenuItems() {
 		
 		
@@ -43,19 +36,22 @@ public class MenuItemController {
 
 				String user = authentication.getName();
 
-				UserDetails userDetails = inMemoryUserDetailsManager.loadUserByUsername(user);
-
-				String role = userDetails.getAuthorities().toArray()[0].toString();
+				if(!user.equalsIgnoreCase("anonymoususer")){
+					
+					UserDetails userDetails = inMemoryUserDetailsManager.loadUserByUsername(user);
+	
+					String role = userDetails.getAuthorities().toArray()[0].toString();
+					
+					System.out.println("role is "+role);
+					
+					if(role.equals("ROLE_USER"))
+						return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
+					else 
+					if(role.equals("ROLE_ADMIN"))
+						return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListAdmin(),HttpStatus.OK);
+				}
 				
-				System.out.println("role is "+role);
-				
-				if(role.equals("ROLE_USER"))
-					return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
-				else 
-				if(role.equals("ROLE_ADMIN"))
-					return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListAdmin(),HttpStatus.OK);
-				
-				return null;
+				return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
 	}
 	
 	
