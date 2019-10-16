@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   isLoginValid: boolean = true;
   authSource: string;
   submitClicked: boolean = false;
+
   
 
   constructor(public authService: AuthService,
@@ -44,9 +45,19 @@ export class LoginComponent implements OnInit {
       } else {
       this.isLoginValid = false;
       } */
-      if(!this.authService.loggedInUser) {
-        this.isLoginValid=false;
+      
+      this.authService.getIsLoginValidSubject().subscribe(invalidLogin=>{
+        if(invalidLogin) {
+          this.isLoginValid=false;
+        }
+      })
+    /*   setTimeout(()=>{
+        if(!this.authService.loggedInUser) {
+          this.isLoginValid=false;
+        }
       }
+      ,4000); */
+   
     
     }
   }

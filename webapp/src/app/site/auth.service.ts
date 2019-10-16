@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from './user';
@@ -15,6 +15,14 @@ export class AuthService {
   userAuthenticated:User={username:'',firstName:'',lastName:'',role:'',accessToken:''};
   redirectUrl:string = "/";
   isAdmin:boolean = false;
+  
+  
+    
+  isLoginValidSubject = new Subject();
+
+  getIsLoginValidSubject():Subject<Object>{
+    return this.isLoginValidSubject;
+  }
 
   constructor(private userService: UserService,
               private router: Router) { }
@@ -51,6 +59,7 @@ export class AuthService {
             this.router.navigate(['/menu']);
           } else {
             // sessionStorage.setItem('loginInvalid','true');
+            
           }
 
 
@@ -62,6 +71,7 @@ export class AuthService {
         // sessionStorage.setItem('loginInvalid', 'true');
         // console.log('error is '+err);
         // invalid();
+        this.getIsLoginValidSubject().next(true);
       }  );
 
     }

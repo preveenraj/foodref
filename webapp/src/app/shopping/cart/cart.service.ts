@@ -3,6 +3,10 @@ import { FoodItem } from 'src/app/food/item-info/food-item';
 import { Cart } from './cart';
 import { UUID } from 'angular2-uuid';
 import { FoodService } from 'src/app/food/food.service';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { AuthService } from '../../site/auth.service';
+import { environment } from 'src/environments/environment';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +15,7 @@ export class CartService {
 
   @Output() cartUpdated = new EventEmitter();
   
+  cartUrl:string = environment.cartUrl;
   foodItems:FoodItem[]; //temporary
   cart: Cart = {
     cartItems :null,
@@ -25,7 +30,15 @@ export class CartService {
   
   
 
-  constructor(private foodService: FoodService) {
+  constructor(private http:HttpClient,
+              private foodService: FoodService,
+              private authService: AuthService) {
+                
+                this.getCart().subscribe(data=>{
+                  this.cart=data;
+                  console.log("from cart service");
+                  console.log(this.cart);
+                });
 
 
       //this is temporary to get the foodItems object
@@ -40,8 +53,14 @@ export class CartService {
       //   });
    }
 
-   getCart(){
-     return this.cart;
+   getCart():Observable<Cart>{
+     
+    if(!this.authService.loggedInUser){
+     return of (this.cart);
+  }else{
+     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
+     return this.http.get<Cart>(this.cartUrl+'/'+'1', {headers});
+    }
    }
 
    calculateTotalPrice(): number {
@@ -51,6 +70,16 @@ export class CartService {
           }
     return total;
    }
+   
+   addToCartRest(itemId:number,quantity:number):Observable<boolean>{
+    
+        const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
+        return this.http.post<boolean>(this.cartUrl+'/'+'1'+'/'+itemId,"", {headers});
+   }
+   
+   
+   
+   
 
    //INVOKED BY OUTPUT INJECTOR OF CART
   addToCart(itemId:number,quantity:number){

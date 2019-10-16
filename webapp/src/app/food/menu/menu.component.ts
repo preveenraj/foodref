@@ -67,9 +67,14 @@ filteredFoodItems:FoodItem[]=[];
     // }
 
     addToCart(itemId:number){
-      this.cartService.addToCart(itemId,1);
+      // this.cartService.addToCart(itemId,1);
+     
       if(!this.authService.loggedInUser){
           this.router.navigate(['/cart']);
+      }else{
+        this.cartService.addToCartRest(itemId,1).subscribe(data=>{
+          console.log("item added to cart: "+data);
+        });
       }
     }
 

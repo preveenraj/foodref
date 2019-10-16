@@ -82,23 +82,26 @@ export class FoodService {
   
   
   getFoodItem(itemId: number):Observable<any>{
-    return Observable.create((observer: Observer<FoodItem>)=> {
+/*     return Observable.create((observer: Observer<FoodItem>)=> {
       this.getFoodItems().subscribe((foodItems)=>{
               const foodItem = foodItems.find( foodItem => foodItem.id == itemId);
               observer.next(foodItem);
       });
-    
-
-
-    });
+    }); */
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
+    return this.http.get<FoodItem>(this.menuUrl + '/' + itemId,{headers});
   }
 
 
-  updateFoodItem(foodItem: FoodItem){
+  updateFoodItem(foodItem: FoodItem):Observable<boolean>{
     //UPDATE THE TEMPORARY FOOD ITEM LIST IN THE COMPONENT
-    const itemId = this.fullFoodItems.findIndex(foodItemOriginal => foodItemOriginal.id === foodItem.id);
+/*     const itemId = this.fullFoodItems.findIndex(foodItemOriginal => foodItemOriginal.id === foodItem.id);
     console.log(foodItem)
-    this.fullFoodItems[itemId] = foodItem;
+    this.fullFoodItems[itemId] = foodItem; */
+    
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
+    return this.http.put<boolean>(this.menuUrl,foodItem,{headers});
+    
   }
 
 

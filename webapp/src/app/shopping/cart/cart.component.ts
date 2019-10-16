@@ -11,12 +11,18 @@ import { CartService } from './cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cart: Cart;
+  cart: Cart = {
+    cartItems :null,
+    total : 0
+  };
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-      this.cart = this.cartService.getCart();
+      this.cartService.getCart().subscribe(data=>{
+        this.cart = data;
+        console.log(this.cart);
+      });
    
     }
 

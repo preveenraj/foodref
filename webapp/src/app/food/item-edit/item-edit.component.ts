@@ -84,11 +84,13 @@ export class ItemEditComponent implements OnInit {
       category: this.editForm.value['category'],
        imageUrl: this.editForm.value['imageUrl']
     };
-      this.foodService.updateFoodItem(this.newFoodItem);
-      this.itemEditted = true;
-      setTimeout(() => {
-        this.router.navigate(['/menu']);
-      }, 2000);
+      this.foodService.updateFoodItem(this.newFoodItem).subscribe(saveFlag=>{
+        this.itemEditted = saveFlag ? true : false;
+        setTimeout(() => {
+          this.router.navigate(['/menu']);
+        }, 2000);
+      });
+ 
   }
 
 }
