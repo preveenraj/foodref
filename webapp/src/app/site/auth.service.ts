@@ -19,7 +19,7 @@ export class AuthService {
   constructor(private userService: UserService,
               private router: Router) { }
 
-  async login(username:string, password:string){
+  login(username:string, password:string){
 /*       this.userService.authenticate(username, password).subscribe((user: User) => {
         if (user) {
           this.loggedInUser = true;
@@ -31,7 +31,6 @@ export class AuthService {
         console.log("this is the fetched token");
         let user:User=null;
         // tslint:disable-next-line: forin
-        for (const val in data) {
           // console.log(val+ " : " +data[val]);
           console.log(data);
           console.log("data.role " +data.role.substring(5));
@@ -40,7 +39,7 @@ export class AuthService {
           user = this.userService.getUser(data.role.substring(5).toLowerCase());
           user.accessToken = data.token;
          
-        }
+      
         if(user){
           console.log("user logged in");
           this.loggedInUser = true;
