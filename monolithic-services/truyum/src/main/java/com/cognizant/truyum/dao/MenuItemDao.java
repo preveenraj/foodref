@@ -12,7 +12,7 @@ public interface MenuItemDao {
 
 	public List<MenuItem> getMenuItemListCustomer();
 
-	public void modifyMenuItem(MenuItem menuItem);
+	public boolean modifyMenuItem(MenuItem menuItem);
 
 	public MenuItem getMenuItem(Long menuItemId);
 }

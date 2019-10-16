@@ -32,4 +32,10 @@ public class MenuItemService {
 		return menuItemDao.getMenuItem(id);
 	}
 
+
+	public boolean modifyMenuItem(MenuItem menuItem) {
+		// TODO Auto-generated method stub
+		return menuItemDao.modifyMenuItem(menuItem);
+	}
+
 }

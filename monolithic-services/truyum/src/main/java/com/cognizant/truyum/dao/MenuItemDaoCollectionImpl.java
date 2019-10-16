@@ -69,13 +69,16 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 	// items.
 	// This method will be invoked when Customer submits the user form.
 	@Override
-	public void modifyMenuItem(MenuItem menuItem) {
+	public boolean modifyMenuItem(MenuItem menuItem) {
 
 		for (int i = 0; i < menuItemList.size(); i++) {
 			if (menuItem.equals(menuItemList.get(i))) {
 				menuItemList.set(i, menuItem);
+				return true;
 			}
 		}
+		
+		return false;
 
 	}
 
