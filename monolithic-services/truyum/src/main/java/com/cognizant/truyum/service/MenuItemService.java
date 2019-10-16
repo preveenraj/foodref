@@ -26,4 +26,10 @@ public class MenuItemService {
 		return menuItemDao.getMenuItemListAdmin();
 	}
 
+
+	public MenuItem getMenuItem(Long id) {
+
+		return menuItemDao.getMenuItem(id);
+	}
+
 }

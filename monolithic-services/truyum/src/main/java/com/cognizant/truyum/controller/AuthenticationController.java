@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,10 @@ public class AuthenticationController {
 		LOGGER.info(authHeader);
 		Map<String,String> authmap= new HashMap<String,String>();
 		authmap.put(generateJwt(getUser(authHeader)),getUser(authHeader));
+		
+		String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0].toString();
+		authmap.put("role", role);
+		LOGGER.info("END OF AUTH FUNCTION");
 		return authmap;
 	}
 	private String getUser(String authHeader){
