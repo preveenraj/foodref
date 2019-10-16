@@ -32,14 +32,21 @@ export class AuthService {
         let user:User=null;
         // tslint:disable-next-line: forin
         for (const val in data) {
-          console.log(data[val]);
-          user = this.userService.getUser(data[val]);
-          user.accessToken = val;
+          // console.log(val+ " : " +data[val]);
+          console.log(data);
+          console.log("data.role " +data.role.substring(5));
+          console.log("data.token " +data.token);
+          
+          user = this.userService.getUser(data.role.substring(5).toLowerCase());
+          user.accessToken = data.token;
+         
         }
         if(user){
           console.log("user logged in");
           this.loggedInUser = true;
           this.userAuthenticated = user;
+          console.log("user is ");
+          console.log(this.userAuthenticated);
           this.isAdmin = user.role === 'Admin';
 
           if(this.loggedInUser) {
@@ -64,7 +71,7 @@ export class AuthService {
     logOut() {
       this.redirectUrl = '/login'; // reset to root url
       this.loggedInUser = false;
-      this.userAuthenticated = null;
+      this.userAuthenticated = {username:'',firstName:'',lastName:'',role:'',accessToken:''};
       this.isAdmin = false;
     }
 

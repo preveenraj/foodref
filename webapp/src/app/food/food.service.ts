@@ -17,6 +17,7 @@ export class FoodService {
   // username="user";
   // password="pwd";
   // headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username+":"+this.password) });
+  
 
   private food_url = '/assets/data/fooditems.json';
   fullFoodItems: FoodItem[];
@@ -46,7 +47,14 @@ export class FoodService {
   }
 
   getFoodItems():Observable<FoodItem[]> {
+
+    if(this.authService.userAuthenticated.username===''){
     return this.http.get<FoodItem[]>(this.menuUrl);
+    }
+    else{
+      const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
+      return this.http.get<FoodItem[]>(this.menuUrl+'/auth',{headers});
+    }
     // return of (this.fullFoodItems);
   }
 

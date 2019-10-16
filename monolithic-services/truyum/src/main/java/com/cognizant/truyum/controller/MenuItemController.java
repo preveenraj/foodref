@@ -29,10 +29,17 @@ public class MenuItemController {
 
 	
 	@GetMapping()
+	public ResponseEntity<List<MenuItem>> getAllMenuItemsAnonymous() {
+
+		
+		return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/auth")
 	public ResponseEntity<List<MenuItem>> getAllMenuItems() {
 		
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 				String user = authentication.getName();
 
@@ -41,9 +48,16 @@ public class MenuItemController {
 				String role = userDetails.getAuthorities().toArray()[0].toString();
 				
 				System.out.println("role is "+role);
-		
-		return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListAdmin(),HttpStatus.OK);
+				
+				if(role.equals("ROLE_USER"))
+					return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
+				else 
+				if(role.equals("ROLE_ADMIN"))
+					return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListAdmin(),HttpStatus.OK);
+				
+				return null;
 	}
+	
 	
 	
 	@GetMapping("/{id}")

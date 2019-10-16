@@ -26,8 +26,8 @@ public class AuthenticationController {
 		LOGGER.info("start");
 		LOGGER.info(authHeader);
 		Map<String,String> authmap= new HashMap<String,String>();
-		authmap.put(generateJwt(getUser(authHeader)),getUser(authHeader));
-		
+//		authmap.put(generateJwt(getUser(authHeader)),getUser(authHeader));
+		authmap.put("token",generateJwt(getUser(authHeader)));
 		String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0].toString();
 		authmap.put("role", role);
 		LOGGER.info("END OF AUTH FUNCTION");

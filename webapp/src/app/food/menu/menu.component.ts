@@ -32,8 +32,9 @@ filteredFoodItems:FoodItem[]=[];
       .subscribe(
         (data:FoodItem[]) =>  {
         this.fullFoodItems = [...data];
-       this.filteredFoodItems = this.authService.isAdminUser() ? 
-                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems); 
+        this.filteredFoodItems = this.fullFoodItems;
+      /*  this.filteredFoodItems = this.authService.isAdminUser() ? 
+                          this.fullFoodItems: this.foodService.getFoodItemsForCustomer(this.fullFoodItems);  */
       }
       );
 
@@ -47,7 +48,7 @@ filteredFoodItems:FoodItem[]=[];
 
 
       //SIMPLY
-      this.menuItemService.getAllMenuItems().subscribe(
+      this.foodService.getFoodItems().subscribe(
         data=>{
           console.log("this is from spring");
           console.log(data);
