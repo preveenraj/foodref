@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
+  userUrl: 'http://localhost:8083/users',
   authUrl: 'http://localhost:8083/authenticate',
   baseUrl: 'http://localhost:8083/menu-items',
   cartUrl: 'http://localhost:8083/carts',
-  
 };
 
 /*

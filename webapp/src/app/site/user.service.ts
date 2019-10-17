@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, enableProdMode } from '@angular/core';
 import { User } from './user';
 import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -8,8 +8,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
+  
 
-
+  userUrl:string = environment.userUrl;
   
   authUrl:string = environment.authUrl;
 
@@ -26,8 +27,9 @@ export class UserService {
   constructor(private http: HttpClient) { }
   
   
-  addUser(newUser:User){
-    this.userList.push(newUser);
+  addUser(newUser:User):Observable<boolean>{
+    // this.userList.push(newUser);
+    return this.http.post<boolean>(this.userUrl,newUser);
   }
   
   getUser(username:string){

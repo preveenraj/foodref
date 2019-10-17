@@ -66,7 +66,9 @@ export class SignupComponent implements OnInit {
                       lastName: this.signupForm.value['lastname'], 
                       password: this.signupForm.value['password'], 
                       role: 'Customer' };
-    this.userService.addUser(newUser);
+    this.userService.addUser(newUser).subscribe(data => {
+        console.log("new user added: "+data);
+    });
     this.signupForm.reset();
     
     
