@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'webapp';
+  
+  constructor(){
+  console.log("%cDeveloped by Preveen Raj!", "color: #27ae60; font-size: x-large; text-shadow: 4px;");
+  }
 }

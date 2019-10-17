@@ -38,23 +38,21 @@ export class AuthService {
         }
       }); */
       this.userService.authenticate(username, password).subscribe((data: any) => {
-        console.log("this is the fetched token");
+        // console.log("this is the fetched token");
         let user:User=null;
-        // tslint:disable-next-line: forin
-          // console.log(val+ " : " +data[val]);
-          console.log(data);
-          console.log("data.role " +data.role.substring(5));
-          console.log("data.token " +data.token);
+          // console.log(data);
+          // console.log("data.role " +data.role.substring(5));
+          // console.log("data.token " +data.token);
 
           user = this.userService.getUser(data.role.substring(5).toLowerCase());
           user.accessToken = data.token;
 
         if(user){
-          console.log("user logged in");
+          // console.log("user logged in");
           this.loggedInUser = true;
           this.userAuthenticated = user;
-          console.log("user is ");
-          console.log(this.userAuthenticated);
+          // console.log("user is ");
+          // console.log(this.userAuthenticated);
           this.isAdmin = user.role === 'Admin';
 
           if(this.loggedInUser) {

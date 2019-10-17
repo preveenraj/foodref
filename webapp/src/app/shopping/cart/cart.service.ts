@@ -40,7 +40,7 @@ export class CartService {
               private foodService: FoodService,
               private authService: AuthService) {
 
-                console.log("inside cart service constructor");
+                // console.log("inside cart service constructor");
       //this is temporary to get the foodItems object
       // this.foodService.getFoodItems()
       // .subscribe(

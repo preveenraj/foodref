@@ -41,8 +41,8 @@ export class FoodService {
   constructor(private http: HttpClient, private authService: AuthService) { 
     this.getFoodItems().subscribe(data=>{
       this.fullFoodItems=data;
-      console.log("from food service");
-      console.log(this.fullFoodItems);
+      // console.log("from food service");
+      // console.log(this.fullFoodItems);
     });
   }
 

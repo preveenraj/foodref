@@ -40,22 +40,13 @@ filteredFoodItems:FoodItem[]=[];
 
       this.foodService.getFilter().subscribe(
         (title: string) => {
-          console.log('filter cheythu');
+          // console.log('filtering done');
 
           this.filteredFoodItems = this.foodService.getFoodItemsFiltered(title,this.fullFoodItems);
       }
       );
 
      
-
-
-      //SIMPLY
-      this.foodService.getFoodItems().subscribe(
-        data=>{
-          console.log("this is from spring");
-          console.log(data);
-        }
-      )
 
 
     }
@@ -76,7 +67,7 @@ filteredFoodItems:FoodItem[]=[];
       }else{
   
         this.cartService.addToCartRest(itemId,1).subscribe(data=>{
-          console.log("item added to cart: "+data);
+          // console.log("item added to cart: "+data);
           
         });
       }

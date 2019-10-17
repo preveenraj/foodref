@@ -32,6 +32,7 @@ public class UserController {
 				return false;
 			}
 			else{
+				
 				inMemoryUserDetailsManager.createUser(
 						org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
 						.password(new BCryptPasswordEncoder().encode(user.getPassword()))

@@ -14,14 +14,14 @@ export class AuthGuardService {
     // retain the url that is requested for authorization
     this.authService.redirectUrl = state.url;
 
-    console.log('URL', state.url);
+    // console.log('URL', state.url);
     
     return Observable.create((observer: Observer<boolean>) => {
       if (this.authService.loggedInUser) {
-        console.log('Logged in');
+        // console.log('Logged in');
         observer.next(true);
       } else {
-        console.log('Not Logged in');
+        // console.log('Not Logged in');
         this.router.navigate(['login'], { queryParams: { from: state.url.substr(1) } });
       }
     });
