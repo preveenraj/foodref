@@ -7,11 +7,13 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthService } from '../../site/auth.service';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
+import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
 
   @Output() cartUpdated = new EventEmitter();
   
@@ -37,14 +39,8 @@ export class CartService {
   constructor(private http:HttpClient,
               private foodService: FoodService,
               private authService: AuthService) {
-                
-                this.getCart().subscribe(data=>{
-                  this.cart=data;
-                  console.log("from cart service");
-                  console.log(this.cart);
-                });
 
-
+                console.log("inside cart service constructor");
       //this is temporary to get the foodItems object
       // this.foodService.getFoodItems()
       // .subscribe(
@@ -57,11 +53,12 @@ export class CartService {
       //   });
    }
 
+  
    getCart():Observable<Cart>{
      
     if(!this.authService.loggedInUser){
      return of (this.cart);
-  }else{
+  } else {
      const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
      return this.http.get<Cart>(this.cartUrl+'/'+'1', {headers});
     }
@@ -71,37 +68,21 @@ export class CartService {
    calculateTotalPrice(): number {
       let total = 0 ;
       for (const cartItem of this.cart.cartItems) {
-        total += cartItem.foodItem.price;
+        total += cartItem.price;
           }
     return total;
    }
    
    addToCartRest(itemId:number,quantity:number):Observable<boolean>{
-    
-
-
-       this.IdOffoodItemtobeAdded=+itemId;
-
-       if(this.cart.cartItems.some(cartItem => cartItem.id == itemId)){
-        this.alreadyExists = true;
-        setTimeout(() => {
-          this.alreadyExists = false;
-        }, 1000);
-       
-        } else
-       {
-       this.foodItemAdded = true;
-                    setTimeout(() => {
-                      this.foodItemAdded = false;
-                    }, 1000);
-        const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
-        return this.http.post<boolean>(this.cartUrl+'/'+'1'+'/'+itemId,"", {headers});
-       }
+      this.IdOffoodItemtobeAdded =+ itemId;
+      this.foodItemAdded = true;
+          setTimeout(() => {
+            this.foodItemAdded = false;
+          }, 1000);
+    const headers = new HttpHeaders({ Authorization: 'Bearer '+this.authService.userAuthenticated.accessToken});
+    return this.http.post<boolean>(this.cartUrl+'/'+'1'+'/'+itemId,"", {headers});
    }
-   
-   
-   
-   
+
 
  /*   //INVOKED BY OUTPUT INJECTOR OF CART
   addToCart(itemId:number,quantity:number){
@@ -136,11 +117,18 @@ export class CartService {
 
   }
  */
-  RemoveCartItem(cartItemId:string){
-    let itemIndex = this.cart.cartItems.findIndex(cartItem => cartItem.itemId===cartItemId);
+
+ //hardcoded implementation of remove
+  RemoveCartItem(cartItemId:string):Observable<boolean>{
+/*     let itemIndex = this.cart.cartItems.findIndex(cartItem => cartItem.itemId===cartItemId);
     let itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
-    this.cart.total -= itemToBeRemoved.foodItem.price;
+    this.cart.total -= itemToBeRemoved.foodItem.price; */
+    const headers = new HttpHeaders({ Authorization: 'Bearer '+this.authService.userAuthenticated.accessToken});
+    return this.http.delete<boolean>(this.cartUrl+'/'+'1'+'/'+cartItemId, {headers});
+
   }
+
+
 
   clearCart() {
     this.cart.cartItems = null;

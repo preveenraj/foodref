@@ -5,6 +5,7 @@ import { User } from './user';
 import { FoodService } from '../food/food.service';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Router } from '@angular/router';
+import { CartService } from '../shopping/cart/cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class AuthService {
   }
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router
+              ) { }
 
   login(username:string, password:string){
 /*       this.userService.authenticate(username, password).subscribe((user: User) => {
@@ -57,6 +59,8 @@ export class AuthService {
 
           if(this.loggedInUser) {
             this.router.navigate(['/menu']);
+            this.getIsLoginValidSubject().next(false);
+            
           } else {
             // sessionStorage.setItem('loginInvalid','true');
             

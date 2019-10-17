@@ -1,6 +1,6 @@
 package com.cognizant.truyum.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,22 @@ public class CartService {
 		return cartDao.addCartItem(userId, menuItemId);
 	}
 
-	public Cart getAllCartItems(Long userId) throws CartEmptyException {
+	public Cart getAllCartItems(Long userId) {
 		// TODO Auto-generated method stub
-		return cartDao.getAllCartItems(userId);
+		try {
+			return cartDao.getAllCartItems(userId);
+		} catch (CartEmptyException e) {
+			System.out.println("scene aane cart empty");
+			return new Cart(new ArrayList<MenuItem>(),0);
+		}
+	}
+
+
+
+	public void deleteCartItem(Long userId, Long menuItemId) {
+		// TODO Auto-generated method stub
+		cartDao.removeCartItem(userId, menuItemId);
+		
 	}
 
 

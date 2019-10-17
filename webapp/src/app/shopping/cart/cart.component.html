@@ -12,8 +12,9 @@
               <span class="float-right text-danger mt-1">
                   <label name="price">Rs. {{cartItem.price}}</label>
               </span>
-          </div>   
-          <a (click)="onRemoveCartItem(cartItem.itemId)" class="list-group-item-text float-right"><i class="material-icons delete-icon text-muted">delete_forever</i></a>
+          </div> 
+          itemid is: {{cartItem.id}}  
+          <a (click)="onRemoveCartItem(cartItem.id)" class="list-group-item-text float-right"><i class="material-icons delete-icon text-muted">delete_forever</i></a>
       </div>
 
      

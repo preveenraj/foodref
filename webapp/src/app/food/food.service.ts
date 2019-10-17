@@ -71,7 +71,7 @@ export class FoodService {
   
   getFoodItemsFiltered(title: string,fullFoodItems:FoodItem[]): FoodItem[] {
     console.log("inside filter and isAdmin: "+ this.authService.isAdminUser());
-    fullFoodItems = this.authService.isAdminUser() ? fullFoodItems: this.getFoodItemsForCustomer(fullFoodItems);
+    // fullFoodItems = this.authService.isAdminUser() ? fullFoodItems: this.getFoodItemsForCustomer(fullFoodItems);
     if(title!=''){
       const result = fullFoodItems.filter(foodItem => foodItem.title.toLowerCase().includes(title.toLowerCase()));
       return result ? result : [];

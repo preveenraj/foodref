@@ -46,6 +46,8 @@ filteredFoodItems:FoodItem[]=[];
       }
       );
 
+     
+
 
       //SIMPLY
       this.foodService.getFoodItems().subscribe(
@@ -72,8 +74,10 @@ filteredFoodItems:FoodItem[]=[];
       if(!this.authService.loggedInUser){
           this.router.navigate(['/cart']);
       }else{
+  
         this.cartService.addToCartRest(itemId,1).subscribe(data=>{
           console.log("item added to cart: "+data);
+          
         });
       }
     }

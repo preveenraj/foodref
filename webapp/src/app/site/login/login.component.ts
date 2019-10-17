@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { CartService } from 'src/app/shopping/cart/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private cartService:CartService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
       this.isLoginValid = false;
     } else {
       this.authService.login(username, password);
+     
       // if(this.authService.isAdminUser() && this.authService.loggedInUser){
       //   this.router.navigate(['/menu']);
       // } else
@@ -49,6 +52,8 @@ export class LoginComponent implements OnInit {
       this.authService.getIsLoginValidSubject().subscribe(invalidLogin=>{
         if(invalidLogin) {
           this.isLoginValid=false;
+        }else{
+         
         }
       })
     /*   setTimeout(()=>{

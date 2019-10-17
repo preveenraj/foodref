@@ -11,6 +11,7 @@ import { CartService } from './cart.service';
 })
 export class CartComponent implements OnInit {
 
+  cartUpdated;
   cart: Cart = {
     cartItems :null,
     total : 0
@@ -19,15 +20,24 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
+  
+      this.getCart();
+
+    }
+
+    getCart(){
       this.cartService.getCart().subscribe(data=>{
         this.cart = data;
         console.log(this.cart);
       });
-   
     }
 
     onRemoveCartItem(cartItemId:string){
-      this.cartService.RemoveCartItem(cartItemId);
+      this.cartService.RemoveCartItem(cartItemId).subscribe(data=>{
+        this.cartUpdated=data;
+        this.getCart();
+
+      });
     }
 
 }
