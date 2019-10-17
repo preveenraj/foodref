@@ -24,6 +24,10 @@ export class CartService {
   
   alreadyExists:boolean = false;
   foodItemAdded:boolean = false;
+
+  IdOffoodItemtobeAdded =-1;
+
+  //hardcoded old one
   foodItemtobeAdded:FoodItem =  {id:-1,title:null,price:null,active:null,dateOfLaunch:new Date('03/15/2017'),
                                   category:null,freeDelivery:true,imageUrl:null};
  
@@ -63,6 +67,7 @@ export class CartService {
     }
    }
 
+   //unused method
    calculateTotalPrice(): number {
       let total = 0 ;
       for (const cartItem of this.cart.cartItems) {
@@ -73,15 +78,32 @@ export class CartService {
    
    addToCartRest(itemId:number,quantity:number):Observable<boolean>{
     
+
+
+       this.IdOffoodItemtobeAdded=+itemId;
+
+       if(this.cart.cartItems.some(cartItem => cartItem.id == itemId)){
+        this.alreadyExists = true;
+        setTimeout(() => {
+          this.alreadyExists = false;
+        }, 1000);
+       
+        } else
+       {
+       this.foodItemAdded = true;
+                    setTimeout(() => {
+                      this.foodItemAdded = false;
+                    }, 1000);
         const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
         return this.http.post<boolean>(this.cartUrl+'/'+'1'+'/'+itemId,"", {headers});
+       }
    }
    
    
    
    
 
-   //INVOKED BY OUTPUT INJECTOR OF CART
+ /*   //INVOKED BY OUTPUT INJECTOR OF CART
   addToCart(itemId:number,quantity:number){
         this.foodService.getFoodItem(itemId)
               .subscribe((foodItemtobeAdded:FoodItem)=>{
@@ -113,7 +135,7 @@ export class CartService {
               });
 
   }
-
+ */
   RemoveCartItem(cartItemId:string){
     let itemIndex = this.cart.cartItems.findIndex(cartItem => cartItem.itemId===cartItemId);
     let itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
