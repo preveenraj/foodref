@@ -30,7 +30,6 @@ export class SignupComponent implements OnInit {
       'password': new FormControl(null, [Validators.required,  Validators.minLength(8)]),
       'confirmPassword': new FormControl(null, [Validators.required, this.matchConfirmPassword.bind(this)]),
     });
-    
   }
 
   loginAsyncValidator = 

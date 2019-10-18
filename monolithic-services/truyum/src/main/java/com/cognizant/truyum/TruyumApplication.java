@@ -12,10 +12,7 @@ public class TruyumApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TruyumApplication.class, args);
-		System.out.println("Yeah its working");
 		
-		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
-		System.out.println(menuItemDao.getMenuItemListAdmin());
 		
 	}
 
