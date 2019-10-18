@@ -32,6 +32,11 @@ export class UserService {
     // this.userList.push(newUser);
     return this.http.post<boolean>(this.userUrl,newUser);
   }
+
+  userExists(username:string):boolean{
+    return this.userList.some(user => user.username === username );
+  }
+
   
   getUser(username:string){
     return this.userList.find(user => user.username === username );

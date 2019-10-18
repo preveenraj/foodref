@@ -18,6 +18,10 @@
                         *ngIf="signupForm.get('username').dirty && signupForm.get('username').hasError('userNameTaken')">
                             Username already exists
                         </div>
+                        <div class="alert alert-danger" role="alert"
+                        *ngIf="error != ''">
+                            Username already exists
+                        </div>
                     <!-- FIRST ROW -->
                     <div class="row mt-md-0">
                         <div class="form-group col-lg-6">

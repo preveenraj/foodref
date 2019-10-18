@@ -45,11 +45,24 @@ export class AuthService {
           // console.log("data.token " +data.token);
 
           // user = this.userService.getUser(data.role.substring(5).toLowerCase());
-          user = this.userService.getUser(data.username);
-          user.accessToken = data.token;
-          // user.role="user";
-          user.role = user.role === 'admin' ? 'admin' : 'user';
 
+          if(!this.userService.userExists(data.username)){
+
+          user = { username: data.username, 
+                      firstName: "user", 
+                      lastName: "", 
+                      password: "", 
+                      role: data.role.substring(5).toLowerCase(),
+                      accessToken: data.token};
+
+          this.userService.userList.push(user);
+
+          }else{
+            user = this.userService.getUser(data.username);
+            user.accessToken = data.token;
+            // user.role="user";
+            user.role = user.role === 'admin' ? 'admin' : 'user';
+          }
         if(user){
           // console.log("user logged in");
           this.loggedInUser = true;

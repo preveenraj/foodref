@@ -13,7 +13,7 @@ import { switchMap, map } from 'rxjs/operators';
 })
 export class SignupComponent implements OnInit {
 
-  error:string;
+  error:string = '';
   signupForm: FormGroup;
   formSubmitted:boolean = false;
   userList:User[];
@@ -84,7 +84,7 @@ export class SignupComponent implements OnInit {
   }
   
   onSubmitSignUp(){
-    this.formSubmitted = true;
+    
 
     const newUser = { username: this.signupForm.value['username'], 
                       firstName: this.signupForm.value['firstname'], 
@@ -95,18 +95,21 @@ export class SignupComponent implements OnInit {
         // console.log("new user added: "+data);
         this.userService.userList.push(newUser);
         // console.log(this.userService.userList);
-    });
-    this.signupForm.reset();
+        this.signupForm.reset();
+        this.formSubmitted = true;
+    
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
+    },
+    error=>{
+      // console.log(error);
+      if (error.error != null) {
+      this.error = error.error.message;
+      // console.log("error is: "+this.error)
 
-    
-    setTimeout(() => {
-      this.router.navigate(['/login']);
-    }, 2000);
-    
-    
+      }
+    }
+    );
   }
-
- 
- 
-
 }
