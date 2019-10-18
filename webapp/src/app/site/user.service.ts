@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, enableProdMode } from '@angular/core';
 import { User } from './user';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { delay } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,11 @@ export class UserService {
   
   getUser(username:string){
     return this.userList.find(user => user.username === username );
+  }
+
+  isUserNameTaken(username:string){
+   return of({ isLoginAvailable: !this.userList.some(user=> user.username == username) });
+   
   }
 
   authenticate(username: string, password: string): Observable<any> {

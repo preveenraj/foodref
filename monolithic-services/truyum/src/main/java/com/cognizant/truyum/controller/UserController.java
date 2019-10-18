@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,23 @@ public class UserController {
 	@Autowired
 	InMemoryUserDetailsManager inMemoryUserDetailsManager;
 	
+	
+	@GetMapping
+	public boolean isUserNameTaken(@RequestBody String username) throws UserAlreadyExistsException {
+		if(inMemoryUserDetailsManager.userExists(username)){
+			throw new UserAlreadyExistsException();
+		}
+		return false;
+		
+	}
+	
+	
+	
 	@PostMapping
 	public boolean signup(@RequestBody @Valid User user) throws UserAlreadyExistsException {
 		
 			if(inMemoryUserDetailsManager.userExists(user.getUsername())){
-				return false;
+				throw new UserAlreadyExistsException();
 			}
 			else{
 				

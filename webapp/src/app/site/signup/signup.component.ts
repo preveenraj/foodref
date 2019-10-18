@@ -1,7 +1,10 @@
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { UserService } from '../user.service';
+import { Observable, timer } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from '../user';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -10,32 +13,54 @@ import { UserService } from '../user.service';
 })
 export class SignupComponent implements OnInit {
 
+  error:string;
   signupForm: FormGroup;
   formSubmitted:boolean = false;
-  constructor(private userService: UserService) { }
+  userList:User[];
+  constructor(private userService: UserService,
+              private router: Router) {
+               }
 
   ngOnInit() {
+    this.userList = this.userService.userList;
     this.signupForm = new FormGroup({
-      'username': new FormControl(null, [Validators.required, Validators.maxLength(20)], this.isUsernameTaken),
+      'username': new FormControl(null, [Validators.required, Validators.maxLength(20)], this.loginAsyncValidator(this.userService)),
       'firstname': new FormControl(null, [Validators.required, Validators.pattern('^[a-z A-Z]+$'), Validators.maxLength(50)]),
       'lastname': new FormControl(null, [Validators.required, Validators.pattern('^[a-z A-Z]+$'), Validators.maxLength(50)]),
       'password': new FormControl(null, [Validators.required,  Validators.minLength(8)]),
       'confirmPassword': new FormControl(null, [Validators.required, this.matchConfirmPassword.bind(this)]),
     });
+    
   }
+
+  loginAsyncValidator = 
+  (userService: UserService, time: number = 500) => {
+    return (input: FormControl) => {
+      return timer(time).pipe(
+        switchMap(() => userService.isUserNameTaken(input.value)),
+        map(res => {
+          return res.isLoginAvailable ? null : {userNameTaken: true}
+        })
+      );
+    };
+  };
   
-  isUsernameTaken(formControl: FormControl): Promise<any> | Observable<any> {
+  //hardcoded old implementation
+ /*  isUsernameTaken(formControl: FormControl): Promise<any> | Observable<any> {
     const promise = new Promise((resolve, reject) => { // should be remote http call to REST service
       setTimeout(() => {
-        if (formControl.value === 'preveen') {
+        // if (formControl.value === 'preveen') {
+        if (this.userList.some(user=> user.username == formControl.value)) {
           resolve({ 'userNameTaken': true });
         } else {
           resolve(null);
         }
       }, 1000);
+
+
     });
     return promise;
-  }
+  } */
   
   matchConfirmPassword(formControl: FormControl): { [s: string]: boolean } {
     if (this.signupForm) {
@@ -69,9 +94,14 @@ export class SignupComponent implements OnInit {
     this.userService.addUser(newUser).subscribe(data => {
         // console.log("new user added: "+data);
         this.userService.userList.push(newUser);
-        console.log(this.userService.userList);
+        // console.log(this.userService.userList);
     });
     this.signupForm.reset();
+
+    
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2000);
     
     
   }
