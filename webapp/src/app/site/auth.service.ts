@@ -47,7 +47,8 @@ export class AuthService {
           // user = this.userService.getUser(data.role.substring(5).toLowerCase());
           user = this.userService.getUser(data.username);
           user.accessToken = data.token;
-          user.role="user";
+          // user.role="user";
+          user.role = user.role === 'admin' ? 'admin' : 'user';
 
         if(user){
           // console.log("user logged in");
@@ -55,7 +56,7 @@ export class AuthService {
           this.userAuthenticated = user;
           // console.log("user is ");
           // console.log(this.userAuthenticated);
-          this.isAdmin = user.role === 'Admin';
+          this.isAdmin = user.role == 'admin';
 
           if(this.loggedInUser) {
             this.router.navigate(['/menu']);
