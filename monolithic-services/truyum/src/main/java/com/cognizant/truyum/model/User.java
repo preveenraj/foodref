@@ -1,6 +1,7 @@
 package com.cognizant.truyum.model;
 
 public class User {
+	
 	private String username;
 	private String firstname;
 	private String lastname;

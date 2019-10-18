@@ -25,17 +25,7 @@ public class UserController {
 	
 	@Autowired
 	InMemoryUserDetailsManager inMemoryUserDetailsManager;
-	
-	
-	@GetMapping
-	public boolean isUserNameTaken(@RequestBody String username) throws UserAlreadyExistsException {
-		if(inMemoryUserDetailsManager.userExists(username)){
-			throw new UserAlreadyExistsException();
-		}
-		return false;
-		
-	}
-	
+
 	
 	
 	@PostMapping
