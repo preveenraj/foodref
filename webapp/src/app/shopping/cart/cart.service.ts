@@ -60,7 +60,7 @@ export class CartService {
      return of (this.cart);
   } else {
      const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.userAuthenticated.accessToken });
-     return this.http.get<Cart>(this.cartUrl+'/'+'1', {headers});
+     return this.http.get<Cart>(this.cartUrl+'/'+this.authService.userAuthenticated.username, {headers});
     }
    }
 
@@ -80,7 +80,7 @@ export class CartService {
             this.foodItemAdded = false;
           }, 1000);
     const headers = new HttpHeaders({ Authorization: 'Bearer '+this.authService.userAuthenticated.accessToken});
-    return this.http.post<boolean>(this.cartUrl+'/'+'1'+'/'+itemId,"", {headers});
+    return this.http.post<boolean>(this.cartUrl+'/'+this.authService.userAuthenticated.username+'/'+itemId,"", {headers});
    }
 
 
@@ -124,7 +124,7 @@ export class CartService {
     let itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
     this.cart.total -= itemToBeRemoved.foodItem.price; */
     const headers = new HttpHeaders({ Authorization: 'Bearer '+this.authService.userAuthenticated.accessToken});
-    return this.http.delete<boolean>(this.cartUrl+'/'+'1'+'/'+cartItemId, {headers});
+    return this.http.delete<boolean>(this.cartUrl+'/'+this.authService.userAuthenticated.username+'/'+cartItemId, {headers});
 
   }
 

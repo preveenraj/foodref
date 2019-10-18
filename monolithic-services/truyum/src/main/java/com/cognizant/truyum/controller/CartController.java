@@ -26,7 +26,7 @@ public class CartController {
 	CartService cartService;
 	
 	@PostMapping("/{userId}/{menuItemId}")
-	public boolean addCartItem(@PathVariable Long userId,@PathVariable Long menuItemId) {
+	public boolean addCartItem(@PathVariable String userId,@PathVariable Long menuItemId) {
 		System.out.println("userid"+userId);
 		System.out.println("menuItemId"+menuItemId);
 		cartService.addCartItem(userId, menuItemId);
@@ -34,13 +34,12 @@ public class CartController {
 	}
 	
 	@GetMapping("/{userId}")
-	public ResponseEntity<Cart> getAllCartItems(@PathVariable Long userId){
-		System.out.println(cartService.getAllCartItems(userId).toString());
+	public ResponseEntity<Cart> getAllCartItems(@PathVariable String userId){
 		return new ResponseEntity<Cart>(cartService.getAllCartItems(userId),HttpStatus.OK);
 		}
 	
 	@DeleteMapping("/{userId}/{menuItemId}")
-	public boolean deleteCartItem(@PathVariable Long userId,@PathVariable Long menuItemId) {
+	public boolean deleteCartItem(@PathVariable String userId,@PathVariable Long menuItemId) {
 		System.out.println("delete mapping");
 		System.out.println("userid"+userId);
 		System.out.println("menuItemId"+menuItemId);

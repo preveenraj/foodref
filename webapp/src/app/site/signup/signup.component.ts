@@ -68,6 +68,8 @@ export class SignupComponent implements OnInit {
                       role: 'Customer' };
     this.userService.addUser(newUser).subscribe(data => {
         // console.log("new user added: "+data);
+        this.userService.userList.push(newUser);
+        console.log(this.userService.userList);
     });
     this.signupForm.reset();
     

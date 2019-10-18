@@ -20,8 +20,8 @@ export class UserService {
 
   
   userList: User[] = [
-    { username:'admin', firstName: 'Preveen', lastName: '(Admin)', password:'pwd', role: 'Admin'},
-    { username:'user', firstName: 'Tech', lastName: 'Rush', password:'pwd', role: 'Customer'}
+    { username:'admin', firstName: 'Preveen', lastName: '(Admin)', password:'pwd', role: 'admin'},
+    { username:'user', firstName: 'Tech', lastName: 'Rush', password:'pwd', role: 'user'}
   ];
 
   constructor(private http: HttpClient) { }

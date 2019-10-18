@@ -16,23 +16,26 @@ public class CartService {
 	@Autowired
 	CartDao cartDao;
 	
-	public boolean addCartItem(long userId, long menuItemId) {
+	public boolean addCartItem(String userId, long menuItemId) {
 		return cartDao.addCartItem(userId, menuItemId);
 	}
 
-	public Cart getAllCartItems(Long userId) {
+	public Cart getAllCartItems(String userId) {
 		// TODO Auto-generated method stub
 		try {
+			if(cartDao.getAllCartItems(userId)!=null)
 			return cartDao.getAllCartItems(userId);
+			else
+				return new Cart(new ArrayList<MenuItem>(),0);
+				
 		} catch (CartEmptyException e) {
-			System.out.println("scene aane cart empty");
 			return new Cart(new ArrayList<MenuItem>(),0);
 		}
 	}
 
 
 
-	public void deleteCartItem(Long userId, Long menuItemId) {
+	public void deleteCartItem(String userId, Long menuItemId) {
 		// TODO Auto-generated method stub
 		cartDao.removeCartItem(userId, menuItemId);
 		

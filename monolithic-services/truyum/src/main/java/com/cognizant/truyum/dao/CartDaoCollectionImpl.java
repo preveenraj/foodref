@@ -14,21 +14,21 @@ import com.cognizant.truyum.model.MenuItem;
 @Repository
 public class CartDaoCollectionImpl implements CartDao {
 
-	public static HashMap<Long, Cart> userCarts;
+	public static HashMap<String, Cart> userCarts;
 
 	public CartDaoCollectionImpl() {
 		List<MenuItem> MenuItemList = new ArrayList<MenuItem>();
 		if (userCarts == null) {
-			userCarts = new HashMap<Long, Cart>();
+			userCarts = new HashMap<String, Cart>();
 			Cart cartDefault = new Cart(MenuItemList, 0);
-			userCarts.put(1L, cartDefault);
+			userCarts.put("user", cartDefault);
 
 		}
 
 	}
 
 	@Override
-	public boolean addCartItem(long userId, long menuItemId) {
+	public boolean addCartItem(String userId, long menuItemId) {
 		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
 		MenuItem menuItem = menuItemDao.getMenuItem(menuItemId);
 		Cart cart;
@@ -53,7 +53,7 @@ public class CartDaoCollectionImpl implements CartDao {
 	}
 
 	@Override
-	public Cart getAllCartItems(long userId) throws CartEmptyException {
+	public Cart getAllCartItems(String userId) throws CartEmptyException {
 
 		if (userCarts.get(userId) != null) {
 			// if the returned list is empty
@@ -76,7 +76,7 @@ public class CartDaoCollectionImpl implements CartDao {
 	}
 
 	@Override
-	public void removeCartItem(long userId, long menuItemId) {
+	public void removeCartItem(String userId, long menuItemId) {
 		if (userCarts.containsKey(userId)) {
 			List<MenuItem> menuItemList = userCarts.get(userId).getCartItems();
 			for (int i = 0; i < menuItemList.size(); i++) {

@@ -6,11 +6,11 @@ import com.cognizant.truyum.model.Cart;
 
 @Repository
 public interface CartDao {
-	public boolean addCartItem(long userId, long menuItemId);
+	public boolean addCartItem(String userId, long menuItemId);
 
 	// Create a class called CartEmptyException
-	public Cart getAllCartItems(long userId) throws CartEmptyException;
+	public Cart getAllCartItems(String userId) throws CartEmptyException;
 
-	public void removeCartItem(long userId, long menuItemId);
+	public void removeCartItem(String userId, long menuItemId);
 }
 

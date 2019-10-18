@@ -30,6 +30,7 @@ public class AuthenticationController {
 		authmap.put("token",generateJwt(getUser(authHeader)));
 		String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0].toString();
 		authmap.put("role", role);
+		authmap.put("username", getUser(authHeader));
 		LOGGER.info("END OF AUTH FUNCTION");
 		return authmap;
 	}
