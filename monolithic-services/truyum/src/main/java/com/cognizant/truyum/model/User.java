@@ -1,61 +1,86 @@
 package com.cognizant.truyum.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class User {
 	
+	@NotNull
+	@Size(min=4)
 	private String username;
-	private String firstname;
-	private String lastname;
+	@NotNull
+	private String firstName;
+	@NotNull
+	private String lastName;
+	@NotNull
+	@Size(min=8)
 	private String password;
-	private String confirmPassword;
-	
 	
 	
 	public User() {
 		super();
 	}
-	public User(String username, String firstname, String lastname, String password, String confirmPassword) {
+
+
+	public User(@NotNull @Size(min = 8) String username, @NotNull String firstName, @NotNull String lastName,
+			@NotNull @Size(min = 8) String password) {
 		super();
 		this.username = username;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
 	}
+
+
 	public String getUsername() {
 		return username;
 	}
+
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getFirstname() {
-		return firstname;
+
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+
+
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
+
+
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", password="
-				+ password + ", confirmPassword=" + confirmPassword + "]";
+		return "User [username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
+				+ password + "]";
 	}
+	
+	
+	
+
 	
 	
 

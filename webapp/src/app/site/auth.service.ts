@@ -49,9 +49,9 @@ export class AuthService {
           if(!this.userService.userExists(data.username)){
 
           user = { username: data.username, 
-                      firstName: "user", 
+                      firstName: username, 
                       lastName: "", 
-                      password: "", 
+                      password: password, 
                       role: data.role.substring(5).toLowerCase(),
                       accessToken: data.token};
 
