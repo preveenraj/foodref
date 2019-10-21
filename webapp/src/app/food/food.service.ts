@@ -108,16 +108,5 @@ export class FoodService {
   
 
 
-
-
-
-
-
-
-
-  /* getFoodItems(active: boolean, launchDate: Date): FoodItem[]{
-    return this.fooditems;
-  } */
-
   
 }
