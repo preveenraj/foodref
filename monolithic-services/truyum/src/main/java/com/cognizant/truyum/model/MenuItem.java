@@ -2,16 +2,47 @@ package com.cognizant.truyum.model;
 
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="menu_item")
 public class MenuItem {
+	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="me_id")
 	private long id;
+	@Column(name="me_name")
 	private String title;
+	@Column(name="me_price")
 	private float price;
+	@Column(name="me_active")
 	private boolean active;
+	@Column(name="me_date_of_launch")
 	private Date dateOfLaunch;
+	@Column(name="me_category")
 	private String category;
+	@Column(name="me_free_delivery")
 	private boolean freeDelivery;
+	@Column(name="me_image_url")
 	private String imageUrl;
+	
+	 @ManyToMany
+	    @JoinTable(name = "cart",
+	        joinColumns = @JoinColumn(name = "ct_pr_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "ct_us_id"))
+	private List<User> users;
 
 	public String getImageUrl() {
 		return imageUrl;
