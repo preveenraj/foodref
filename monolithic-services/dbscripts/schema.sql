@@ -38,7 +38,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `truyum`.`user` (
   `us_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `us_name` VARCHAR(60) NULL DEFAULT NULL,
+  `us_username` VARCHAR(60) NULL DEFAULT NULL,
+  `us_firstname` VARCHAR(60) NULL DEFAULT NULL,
+  `us_lastname` VARCHAR(60) NULL DEFAULT NULL,
+  `us_password` VARCHAR(60) NULL DEFAULT NULL,
   PRIMARY KEY (`us_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
@@ -75,12 +78,12 @@ USE `truyum` ;
 CREATE TABLE IF NOT EXISTS `truyum`.`menu_item` (
   `me_id` BIGINT NOT NULL AUTO_INCREMENT,
   `me_name` VARCHAR(100) NULL DEFAULT NULL,
-  `me_price` DECIMAL(8,2) NULL DEFAULT NULL,
-  `me_active` VARCHAR(3) NULL DEFAULT NULL,
+  `me_price` FLOAT NULL DEFAULT NULL,
+  `me_active` TINYINT(1) NULL DEFAULT NULL,
   `me_date_of_launch` DATE NULL DEFAULT NULL,
   `me_category` VARCHAR(45) NULL DEFAULT NULL,
-  `me_free_delivery` VARCHAR(3) NULL DEFAULT NULL,
-  `me_imageUrl` VARCHAR(90) NULL DEFAULT NULL,
+  `me_free_delivery` TINYINT(1) NULL DEFAULT NULL,
+  `me_image_url` VARCHAR(90) NULL DEFAULT NULL,
   PRIMARY KEY (`me_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
