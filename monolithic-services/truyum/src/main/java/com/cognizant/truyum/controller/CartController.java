@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.truyum.TruyumApplication;
-import com.cognizant.truyum.model.Cart;
+import com.cognizant.truyum.dto.CartDTO;
 import com.cognizant.truyum.service.CartService;
 
 @RestController
@@ -34,8 +34,8 @@ public class CartController {
 	}
 	
 	@GetMapping("/{userId}")
-	public ResponseEntity<Cart> getAllCartItems(@PathVariable String userId){
-		return new ResponseEntity<Cart>(cartService.getAllCartItems(userId),HttpStatus.OK);
+	public ResponseEntity<CartDTO> getAllCartItems(@PathVariable String userId){
+		return new ResponseEntity<CartDTO>(cartService.getAllCartItems(userId),HttpStatus.OK);
 		}
 	
 	@DeleteMapping("/{userId}/{menuItemId}")

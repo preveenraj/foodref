@@ -1,4 +1,3 @@
-import { MenuItemService } from './../../services/menu-item.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodItem } from '../item-info/food-item';
 import { FoodService } from '../food.service';
@@ -22,7 +21,6 @@ filteredFoodItems:FoodItem[]=[];
      private cartService: CartService,
      private router:Router,
      private authService: AuthService,
-     private menuItemService: MenuItemService
      ) { }
   foodname:string;
 

@@ -7,14 +7,27 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.cognizant.truyum.exception.CartEmptyException;
-import com.cognizant.truyum.model.Cart;
 import com.cognizant.truyum.model.MenuItem;
 
 
 @Repository
 public class CartDaoCollectionImpl implements CartDao {
 
-	public static HashMap<String, Cart> userCarts;
+	@Override
+	public boolean addCartItem(String userId, long menuItemId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void removeCartItem(String userId, long menuItemId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+
+/*	public static HashMap<String, Cart> userCarts;
 
 	public CartDaoCollectionImpl() {
 		List<MenuItem> MenuItemList = new ArrayList<MenuItem>();
@@ -91,3 +104,4 @@ public class CartDaoCollectionImpl implements CartDao {
 
 	}
 }
+*/
