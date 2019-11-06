@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.cognizant.truyum.security.AppUserDetailsService;
 import com.cognizant.truyum.security.JwtAuthorizationFilter;
 
 @Configuration
@@ -26,9 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TruyumApplication.class);
 
 	@Autowired
+	AppUserDetailsService appUserDetailsService;
+	
+	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.userDetailsService(inMemoryUserDetailsManager());
+//		auth.userDetailsService(inMemoryUserDetailsManager());
 
 		
 		/*
@@ -36,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * encode("pwd")).roles("ADMIN").and()
 		 * .withUser("user").password(passwordEncoder().encode("pwd")).roles("USER");
 		 */
+		
+		  auth.userDetailsService(appUserDetailsService).passwordEncoder(passwordEncoder());
 		 
 	}
 

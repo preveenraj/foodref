@@ -1,14 +1,15 @@
 package com.cognizant.truyum.dto;
 
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.cognizant.truyum.model.MenuItem;
 
 public class CartDTO {
 	
-	private Set<MenuItem> cartItems = new HashSet<MenuItem>();
+	private List<MenuItem> cartItems = new ArrayList<MenuItem>();
 
 	private double total;
 
@@ -16,13 +17,19 @@ public class CartDTO {
 		super();
 	}
 	
-	public Set<MenuItem> getCartItems() {
+
+
+	public List<MenuItem> getCartItems() {
 		return cartItems;
 	}
 
-	public void setCartItems(Set<MenuItem> cartItems) {
+
+
+	public void setCartItems(List<MenuItem> cartItems) {
 		this.cartItems = cartItems;
 	}
+
+
 
 	public double getTotal() {
 		return total;

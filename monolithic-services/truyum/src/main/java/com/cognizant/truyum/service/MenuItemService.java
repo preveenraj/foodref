@@ -1,6 +1,7 @@
 package com.cognizant.truyum.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,14 @@ public class MenuItemService {
 	public boolean modifyMenuItem(MenuItem menuItem) {
 		// TODO Auto-generated method stub
 //		return menuItemDao.modifyMenuItem(menuItem);
-		menuItemRepository.save(menuItem);
-		return true;
+		Optional<MenuItem> opMenuItem = menuItemRepository.findById(menuItem.getId());
+		if(opMenuItem.isPresent()) {
+			menuItemRepository.save(menuItem);
+			return true;
+		}
+		else
+			return false;
+		
 	}
 
 }

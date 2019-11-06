@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -131,7 +132,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", password=" + password + ", menuItems=" + menuItems + "]";
+				+ ", password=" + password + ", menuItems=" + menuItems + ", roles=" + roles + "]";
 	}
 
 	public List<Role> getRoles() {

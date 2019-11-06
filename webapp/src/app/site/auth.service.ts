@@ -48,20 +48,20 @@ export class AuthService {
 
           if(!this.userService.userExists(data.username)){
 
-          user = { username: data.username, 
-                      firstName: username, 
-                      lastName: "", 
-                      password: password, 
-                      role: data.role.substring(5).toLowerCase(),
-                      accessToken: data.token};
+            user = { username: data.username, 
+                        firstName: data.firstname, 
+                        lastName: data.lastname, 
+                        password: password, 
+                        role: data.role,
+                        accessToken: data.token};
 
-          this.userService.userList.push(user);
+            this.userService.userList.push(user);
 
-          }else{
+          } else {
             user = this.userService.getUser(data.username);
             user.accessToken = data.token;
             // user.role="user";
-            user.role = user.role === 'admin' ? 'admin' : 'user';
+            user.role = user.role === 'ADMIN' ? 'admin' : 'user';
           }
         if(user){
           // console.log("user logged in");
@@ -69,21 +69,15 @@ export class AuthService {
           this.userAuthenticated = user;
           // console.log("user is ");
           // console.log(this.userAuthenticated);
-          this.isAdmin = user.role == 'admin';
+          this.isAdmin = user.role == 'ADMIN';
 
           if(this.loggedInUser) {
             this.router.navigate(['/menu']);
             this.getIsLoginValidSubject().next(false);
-            
           } else {
             // sessionStorage.setItem('loginInvalid','true');
-            
           }
-
-
         }
-        
-    
       },
       (err)=>    { 
         // sessionStorage.setItem('loginInvalid', 'true');

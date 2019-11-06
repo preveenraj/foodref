@@ -16,14 +16,14 @@ export class UserService {
   authUrl:string = environment.authUrl;
 
 
-
+  userList: User[] = [ ];
 
 
   
-  userList: User[] = [
-    { username:'admin', firstName: 'Preveen', lastName: '(Admin)', password:'pwd', role: 'admin'},
-    { username:'user', firstName: 'Tech', lastName: 'Rush', password:'pwd', role: 'user'}
-  ];
+  // userList: User[] = [
+  //   { username:'admin', firstName: 'Preveen', lastName: '(Admin)', password:'pwd', role: 'admin'},
+  //   { username:'user', firstName: 'Tech', lastName: 'Rush', password:'pwd', role: 'user'}
+  // ];
 
   constructor(private http: HttpClient) { }
   
