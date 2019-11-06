@@ -124,6 +124,7 @@ export class CartService {
     let itemToBeRemoved = this.cart.cartItems.splice(itemIndex,1)[0];
     this.cart.total -= itemToBeRemoved.foodItem.price; */
     const headers = new HttpHeaders({ Authorization: 'Bearer '+this.authService.userAuthenticated.accessToken});
+    console.log(this.cartUrl+'/'+this.authService.userAuthenticated.username+'/'+cartItemId);
     return this.http.delete<boolean>(this.cartUrl+'/'+this.authService.userAuthenticated.username+'/'+cartItemId, {headers});
 
   }

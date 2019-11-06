@@ -11,12 +11,12 @@ import com.cognizant.truyum.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 
 
-	@Query("SELECT u from User u WHERE u.username=?1")
 	User findByUsername(String username);
 	
 	@Query("SELECT u.menuItems from User u WHERE u.username=?1")
 	List<MenuItem> getMenuItems(String username);
 	
-/*	@Query("SELECT SUM(m.price) from MenuItem m WHERE m.id = (SELECT u.menuItems.id from User u WHERE u.username=?1)")
-	int getCartTotal(String username); */
+	//TODO
+	@Query("SELECT SUM(m.price) from MenuItem m")
+	double getCartTotal(String username); 
 }

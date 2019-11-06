@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.cognizant.truyum.exception.UserAlreadyExistsException;
 import com.cognizant.truyum.model.AppUser;
 import com.cognizant.truyum.model.User;
 import com.cognizant.truyum.repository.UserRepository;
@@ -41,6 +42,16 @@ public class AppUserDetailsService implements UserDetailsService{
 	public AppUserDetailsService(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
+	}
+	
+	public void signup(User newUser) throws UserAlreadyExistsException{
+		User user = userRepository.findByUsername(newUser.getUsername());
+		if(user!=null){
+			throw new UserAlreadyExistsException();
+		} else {
+			userRepository.save(newUser);
+		}
+		
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.cognizant.truyum.controller;
 
+import javax.swing.plaf.SplitPaneUI;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.truyum.TruyumApplication;
 import com.cognizant.truyum.exception.UserAlreadyExistsException;
 import com.cognizant.truyum.model.User;
+import com.cognizant.truyum.security.AppUserDetailsService;
 
 
 @RestController
@@ -23,15 +25,20 @@ import com.cognizant.truyum.model.User;
 public class UserController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TruyumApplication.class);
 	
+//	@Autowired
+//	InMemoryUserDetailsManager inMemoryUserDetailsManager;
+	
 	@Autowired
-	InMemoryUserDetailsManager inMemoryUserDetailsManager;
+	AppUserDetailsService appUserDetailsService;
 
 	
 	
 	@PostMapping
-	public boolean signup(@RequestBody @Valid User user) throws UserAlreadyExistsException {
+	public void signup(@RequestBody @Valid User newUser) throws UserAlreadyExistsException {
 		
-			if(inMemoryUserDetailsManager.userExists(user.getUsername())){
+		appUserDetailsService.signup(newUser);
+		
+	/*		if(inMemoryUserDetailsManager.userExists(user.getUsername())){
 				throw new UserAlreadyExistsException();
 			}
 			else{
@@ -41,8 +48,7 @@ public class UserController {
 						.password(new BCryptPasswordEncoder().encode(user.getPassword()))
 						.roles("USER").build());
 				return true;
-			}
-
+			}*/
 	}
 
 
