@@ -3,6 +3,8 @@ package com.cognizant.truyum.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,26 +21,26 @@ public class MenuItemService {
 	@Autowired
 	MenuItemRepository menuItemRepository;
 	
-	
+	@Transactional
 	public List<MenuItem> getMenuItemListCustomer(){
 //		return menuItemDao.getMenuItemListCustomer();
 		return menuItemRepository.FilterItemsForCustomer();
 	}
 
-
+	@Transactional
 	public List<MenuItem> getMenuItemListAdmin() {
 //		return menuItemDao.getMenuItemListAdmin();
 		return menuItemRepository.findAll();
 	}
 
-
+	@Transactional
 	public MenuItem getMenuItem(Long id) {
 
 //		return menuItemDao.getMenuItem(id);
 		return menuItemRepository.findById(id).get();
 	}
 
-
+	@Transactional
 	public boolean modifyMenuItem(MenuItem menuItem) {
 		// TODO Auto-generated method stub
 //		return menuItemDao.modifyMenuItem(menuItem);

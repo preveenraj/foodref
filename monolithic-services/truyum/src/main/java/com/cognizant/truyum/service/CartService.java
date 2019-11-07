@@ -3,6 +3,8 @@ package com.cognizant.truyum.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class CartService {
 	@Autowired
 	MenuItemRepository menuItemRepository;
 	
+	@Transactional
 	public boolean addCartItem(String username, long menuItemId) { 
 		
 		User user = userRepository.findByUsername(username);
@@ -42,6 +45,7 @@ public class CartService {
 //		return cartDTO.addCartItem(userId, menuItemId);
 		}
 	
+	@Transactional
 	 public CartDTO getAllCartItems(String username) throws CartEmptyException { 
 		 
 		 CartDTO cartDTO;
@@ -72,25 +76,25 @@ public class CartService {
 		 
 	 
 	 }
-	 
+	
+	@Transactional
 	 public void deleteCartItem(String username, Long menuItemId) {
 //		 	cartDTO.removeCartItem(userId, menuItemId);
-			User user = userRepository.findByUsername(username);
+		 
+		 List<MenuItem> menuItemList = userRepository.getMenuItems(username); 
+		 User user = userRepository.findByUsername(username);
+		 MenuItem menuItem = menuItemRepository.getOne(menuItemId);
+		 
+		 menuItemList.remove(menuItem);
+		 user.setMenuItems(menuItemList);
+		 userRepository.save(user);
+		 
+/*			User user = userRepository.findByUsername(username);
 			MenuItem menuItem = menuItemRepository.getOne(menuItemId);
 			List<MenuItem> userMenuItemList = user.getMenuItems();
 			userMenuItemList.removeIf(mItem->{return mItem.getId()==menuItemId; });
-		/*	
-			System.out.println("deletion1");
-			for(MenuItem mItem: userMenuItemList){
-				if(mItem.getId()==menuItemId){
-					System.out.println("deletion2");
-					boolean flag = userMenuItemList.remove(mItem);
-					LOGGER.info("flag is: "+flag);
-					break;
-				}
-			}*/
 			user.setMenuItems(userMenuItemList);
-			userRepository.save(user);
+			userRepository.save(user);*/
 		 }
 	
 
