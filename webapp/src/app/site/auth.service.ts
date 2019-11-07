@@ -61,7 +61,7 @@ export class AuthService {
             user = this.userService.getUser(data.username);
             user.accessToken = data.token;
             // user.role="user";
-            user.role = user.role === 'ADMIN' ? 'admin' : 'user';
+            user.role = user.role === 'ADMIN' ? 'ADMIN' : 'USER';
           }
         if(user){
           // console.log("user logged in");

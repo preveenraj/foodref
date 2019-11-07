@@ -19,6 +19,14 @@ public class CartDTO {
 	
 
 
+	public CartDTO(List<MenuItem> cartItems, double total) {
+		super();
+		this.cartItems = cartItems;
+		this.total = total;
+	}
+
+
+
 	public List<MenuItem> getCartItems() {
 		return cartItems;
 	}

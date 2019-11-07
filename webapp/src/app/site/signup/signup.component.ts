@@ -24,7 +24,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.userList = this.userService.userList;
     this.signupForm = new FormGroup({
-      'username': new FormControl(null, [Validators.required, Validators.maxLength(20), Validators.minLength(4)], this.loginAsyncValidator(this.userService)),
+      'username': new FormControl(null, [Validators.required, Validators.maxLength(20), Validators.minLength(4)],
+                                 this.loginAsyncValidator(this.userService)),
       'firstname': new FormControl(null, [Validators.required, Validators.pattern('^[a-z A-Z]+$'), Validators.maxLength(50)]),
       'lastname': new FormControl(null, [Validators.required, Validators.pattern('^[a-z A-Z]+$'), Validators.maxLength(50)]),
       'password': new FormControl(null, [Validators.required,  Validators.minLength(8)]),
@@ -88,8 +89,9 @@ export class SignupComponent implements OnInit {
     const newUser = { username: this.signupForm.value['username'], 
                       firstName: this.signupForm.value['firstname'], 
                       lastName: this.signupForm.value['lastname'], 
-                      password: this.signupForm.value['password'], 
-                      role: 'Customer' };
+                      password: this.signupForm.value['password'],
+                      role: 'USER' };
+    console.log(newUser);
     this.userService.addUser(newUser).subscribe(data => {
         // console.log("new user added: "+data);
         this.userService.userList.push(newUser);

@@ -1,16 +1,15 @@
 package com.cognizant.truyum.service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cognizant.truyum.TruyumApplication;
 import com.cognizant.truyum.dto.CartDTO;
+import com.cognizant.truyum.exception.CartEmptyException;
 import com.cognizant.truyum.model.MenuItem;
 import com.cognizant.truyum.model.User;
 import com.cognizant.truyum.repository.MenuItemRepository;
@@ -43,11 +42,21 @@ public class CartService {
 //		return cartDTO.addCartItem(userId, menuItemId);
 		}
 	
-	 public CartDTO getAllCartItems(String username) { 
+	 public CartDTO getAllCartItems(String username) throws CartEmptyException { 
 		 
-		 CartDTO cartDTO = new CartDTO();
-		 cartDTO.setCartItems( userRepository.getMenuItems(username));
-		 cartDTO.setTotal(userRepository.getCartTotal(username));
+		 CartDTO cartDTO;
+		 List<MenuItem> menuItemList = (ArrayList<MenuItem>) userRepository.getMenuItems(username); 
+		 
+		 if(menuItemList==null || menuItemList.size()==0){
+			 return new CartDTO(new ArrayList(),0);
+//			 throw new CartEmptyException();
+		 }
+		 else{
+			 cartDTO = new CartDTO();
+			 cartDTO.setCartItems( menuItemList);
+			 cartDTO.setTotal(userRepository.getCartTotal(username));
+		 }
+
 		 
 		
 		 

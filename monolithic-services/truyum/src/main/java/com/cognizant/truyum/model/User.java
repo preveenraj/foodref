@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,6 +20,7 @@ import javax.validation.constraints.Size;
 public class User {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="us_id")
 	private int id;
 	@NotNull
@@ -27,10 +29,10 @@ public class User {
 	private String username;
 	@NotNull
 	@Column(name="us_firstname")
-	private String firstName;
+	private String firstname;
 	@NotNull
 	@Column(name="us_lastname")
-	private String lastName;
+	private String lastname;
 	@NotNull
 	@Size(min=8)
 	@Column(name="us_password")
@@ -76,19 +78,6 @@ public class User {
 	}
 
 
-
-
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 	public String getUsername() {
 		return username;
 	}
@@ -100,22 +89,22 @@ public class User {
 
 
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String firstname) {
+		this.firstname = firstname;
 	}
 
 
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
 
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 
 
@@ -131,7 +120,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
+		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
 				+ ", password=" + password + ", menuItems=" + menuItems + ", roles=" + roles + "]";
 	}
 

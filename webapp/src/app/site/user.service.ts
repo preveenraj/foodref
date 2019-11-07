@@ -21,8 +21,8 @@ export class UserService {
 
   
   // userList: User[] = [
-  //   { username:'admin', firstName: 'Preveen', lastName: '(Admin)', password:'pwd', role: 'admin'},
-  //   { username:'user', firstName: 'Tech', lastName: 'Rush', password:'pwd', role: 'user'}
+  //   { username:'admin', firstname: 'Preveen', lastname: '(Admin)', password:'pwd', role: 'admin'},
+  //   { username:'user', firstname: 'Tech', lastname: 'Rush', password:'pwd', role: 'user'}
   // ];
 
   constructor(private http: HttpClient) { }
@@ -61,9 +61,9 @@ export class UserService {
 
 
       // if (username === 'preveen') {
-      //   observer.next({ username,  firstName: 'Preveen', lastName: 'Raj', role: 'Admin', accessToken: 'JWT-TOKEN' });
+      //   observer.next({ username,  firstname: 'Preveen', lastname: 'Raj', role: 'Admin', accessToken: 'JWT-TOKEN' });
       // } else if(username === 'techrush') {
-      //   observer.next({ username,  firstName: 'Tech', lastName: 'Rush', role: 'Customer', accessToken: 'JWT-TOKEN' });
+      //   observer.next({ username,  firstname: 'Tech', lastname: 'Rush', role: 'Customer', accessToken: 'JWT-TOKEN' });
       // } else {
       //     observer.next(null);
       // }

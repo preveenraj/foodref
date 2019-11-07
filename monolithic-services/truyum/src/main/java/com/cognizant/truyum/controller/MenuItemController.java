@@ -2,14 +2,12 @@ package com.cognizant.truyum.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.truyum.model.MenuItem;
+import com.cognizant.truyum.security.AppUserDetailsService;
 import com.cognizant.truyum.service.MenuItemService;
 
 @RestController
@@ -27,8 +26,11 @@ public class MenuItemController {
 	@Autowired
 	MenuItemService menuItemService;
 	
+/*	@Autowired
+	InMemoryUserDetailsManager inMemoryUserDetailsManager;*/
+	
 	@Autowired
-	InMemoryUserDetailsManager inMemoryUserDetailsManager;
+	AppUserDetailsService appUserDetailsService;
 
 	
 	@GetMapping
@@ -37,13 +39,13 @@ public class MenuItemController {
 				Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 				String user = authentication.getName();
 				if(!user.equalsIgnoreCase("anonymoususer")){
-					UserDetails userDetails = inMemoryUserDetailsManager.loadUserByUsername(user);
+					UserDetails userDetails = appUserDetailsService.loadUserByUsername(user);
 					String role = userDetails.getAuthorities().toArray()[0].toString();
 					System.out.println("role is "+role);
-					if(role.equals("ROLE_USER"))
+					if(role.equals("USER"))
 						return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);
 					else 
-					if(role.equals("ROLE_ADMIN"))
+					if(role.equals("ADMIN"))
 						return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListAdmin(),HttpStatus.OK);
 				}
 				return new ResponseEntity<List<MenuItem>>(menuItemService.getMenuItemListCustomer(),HttpStatus.OK);

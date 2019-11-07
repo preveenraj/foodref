@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.truyum.TruyumApplication;
 import com.cognizant.truyum.dto.CartDTO;
+import com.cognizant.truyum.exception.CartEmptyException;
 import com.cognizant.truyum.service.CartService;
 
 @RestController
@@ -25,14 +26,14 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	
-	  @PostMapping("/{userId}/{menuItemId}") public boolean
-	  addCartItem(@PathVariable String userId,@PathVariable Long menuItemId) {
+	  @PostMapping("/{userId}/{menuItemId}") 
+	  public boolean addCartItem(@PathVariable String userId,@PathVariable Long menuItemId) {
 	  System.out.println("userid"+userId);
 	  System.out.println("menuItemId"+menuItemId); 
 	  cartService.addCartItem(userId,menuItemId); return true; }
 	  
-	  @GetMapping("/{username}") public ResponseEntity<CartDTO>
-	  getAllCartItems(@PathVariable String username){ return new
+	  @GetMapping("/{username}") 
+	  public ResponseEntity<CartDTO>  getAllCartItems(@PathVariable String username) throws CartEmptyException{ return new
 	  ResponseEntity<CartDTO>(cartService.getAllCartItems(username),HttpStatus.OK); }
 	  
 	  @DeleteMapping("/{username}/{menuItemId}")
