@@ -1,14 +1,14 @@
 
 -- VIEW MENU ITEM LIST ADMIN
 
-INSERT INTO`truyum`.`menu_item`(`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_imageUrl`) VALUES('Sandwich', 99.00, true, '2017-03-15', 'Main Course', true,'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1');
-INSERT INTO`truyum`.`menu_item` (`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_imageUrl`) VALUES('Burger', 129.00, true, '2017-12-23','Main Course', false,'https://images.unsplash.com/photo-1512152272829-e3139592d56f?ixlib=rb-1.2.1');
-INSERT INTO`truyum`.`menu_item` (`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_imageUrl`) VALUES('Pizza', 149.00, true, '2017-08-21','Main Course', false,'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?ixlib=rb-1.2.1');
-INSERT INTO`truyum`.`menu_item` (`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_imageUrl`) VALUES( 'French Fries', 57.00, false, '2017-07-02','Starters', true,'https://images.unsplash.com/photo-1526230427044-d092040d48dc?ixlib=rb-1.2.1');
-INSERT INTO`truyum`.`menu_item`(`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_imageUrl`) VALUES('Chocolate Brownie', 32.00, true,'2022-11-02','Dessert', true,'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?ixlib=rb-1.2.1');
+INSERT INTO`truyum`.`menu_item`(`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_image_url`) VALUES('Sandwich', 99.00, true, '2017-03-15', 'Main Course', true,'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1');
+INSERT INTO`truyum`.`menu_item` (`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_image_url`) VALUES('Burger', 129.00, true, '2017-12-23','Main Course', false,'https://images.unsplash.com/photo-1512152272829-e3139592d56f?ixlib=rb-1.2.1');
+INSERT INTO`truyum`.`menu_item` (`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_image_url`) VALUES('Pizza', 149.00, true, '2017-08-21','Main Course', false,'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?ixlib=rb-1.2.1');
+INSERT INTO`truyum`.`menu_item` (`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_image_url`) VALUES( 'French Fries', 57.00, false, '2017-07-02','Starters', true,'https://images.unsplash.com/photo-1526230427044-d092040d48dc?ixlib=rb-1.2.1');
+INSERT INTO`truyum`.`menu_item`(`me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`, `me_image_url`) VALUES('Chocolate Brownie', 32.00, true,'2022-11-02','Dessert', true,'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?ixlib=rb-1.2.1');
 
 
-SELECT `me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`,`me_imageUrl` FROM menu_item;
+SELECT `me_name`, `me_price`, `me_active`, `me_date_of_launch`, `me_category`, `me_free_delivery`,`me_image_url` FROM menu_item;
 
 desc menu_item;
 
