@@ -61,7 +61,7 @@ public class AppUserDetailsService implements UserDetailsService{
 		if(user!=null){
 			throw new UserAlreadyExistsException();
 		} else {
-			Role role = roleRepository.findById(1).get();
+			Role role = roleRepository.findById(2).get();
 			LOGGER.info("NEW ROLE IS: "+role);
 			List<Role> roles = new ArrayList<Role>();
 			roles.add(role);

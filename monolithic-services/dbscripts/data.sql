@@ -26,11 +26,12 @@ UPDATE `truyum`.`menu_item` SET `me_name`='French Fries', `me_price`='58', `me_a
 
 -- ADD TO CART
 
-INSERT INTO `truyum`.`user` (`us_id`, `us_name`) VALUES ('1', 'preveen');
-INSERT INTO `truyum`.`user` (`us_id`, `us_name`) VALUES ('2', 'hari');
+INSERT INTO `truyum`.`user` (`us_username`, `us_firstname`, `us_lastname`, `us_password`) VALUES ('admin', 'Preveen', 'Raj', '$2a$10$R/lZJuT9skteNmAku9Y7aeutxbOKstD5xE5bHOf74M2PHZipyt3yK');
+INSERT INTO `truyum`.`user` (`us_username`, `us_firstname`, `us_lastname`, `us_password`) VALUES ('user', 'Techrush', 'Raj', '$2a$10$R/lZJuT9skteNmAku9Y7aeutxbOKstD5xE5bHOf74M2PHZipyt3yK');
 
-INSERT INTO `truyum`.`role` (`ro_id`, `ro_name`) VALUES ('1', 'USER');
-INSERT INTO `truyum`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'ADMIN');
+
+INSERT INTO `truyum`.`role` (`ro_id`, `ro_name`) VALUES ('1', 'ADMIN');
+INSERT INTO `truyum`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'USER');
 
 
 INSERT INTO `truyum`.`cart` (`ct_us_id`, `ct_pr_id`) VALUES ('1', '2');
