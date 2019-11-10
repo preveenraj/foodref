@@ -52,7 +52,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `truyum`.`user_role`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `truyum`.`user_role` (
-  `ur_id` INT NOT NULL,
+  `ur_id` INT NOT NULL auto_increment,
   `ur_us_id` INT(11) NOT NULL,
   `ur_ro_id` INT NOT NULL,
   PRIMARY KEY (`ur_id`),
